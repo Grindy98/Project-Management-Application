@@ -1,4 +1,4 @@
-module com.project_management_app {
+module test {
     requires javafx.controls;
     requires javafx.fxml;
 
