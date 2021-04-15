@@ -14,6 +14,7 @@ public abstract class FXMLController {
 
     protected FXMLController(String FXMLResourceString) {
         loader = new FXMLLoader(this.getClass().getResource(FXMLResourceString));
+        System.out.println(FXMLResourceString + loader.getLocation());
         loader.setController(this);
     }
 
