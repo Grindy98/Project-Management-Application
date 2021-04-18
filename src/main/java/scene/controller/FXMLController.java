@@ -14,7 +14,6 @@ public abstract class FXMLController {
 
     protected FXMLController(String FXMLResourceString) {
         loader = new FXMLLoader(this.getClass().getResource(FXMLResourceString));
-        System.out.println(FXMLResourceString + loader.getLocation());
         loader.setController(this);
     }
 
@@ -24,6 +23,7 @@ public abstract class FXMLController {
             root = loader.load();
         } catch (IOException e) {
             e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return root;
     }
