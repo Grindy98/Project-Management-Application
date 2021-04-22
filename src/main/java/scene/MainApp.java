@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import scene.controller.implementations.RegistrationPageController;
 import scene.controller.implementations.StartPageController;
 
 import java.io.IOException;
@@ -15,7 +16,7 @@ public class MainApp extends Application{
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new StartPageController().getScene();
+        scene = new RegistrationPageController().getScene();
         stage.setScene(scene);
         stage.show();
     }
