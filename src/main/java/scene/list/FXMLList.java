@@ -1,33 +1,65 @@
 package scene.list;
 
 import javafx.scene.Parent;
+import javafx.scene.layout.Pane;
 import scene.controller.FXMLController;
 
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class FXMLList<T extends FXMLListElement>
-        extends FXMLController
-        implements List<T> {
+/**
+ * Class is terribly inefficient for now, since update() is called multiple times depending on context
+ * @param <T> FXML element that has a representation in FXML
+ */
+public class FXMLList<T extends FXMLListElement>
+        extends AbstractList<T> {
 
-    protected ArrayList<T> list;
+    private ArrayList<T> list;
 
-    /**
-     * Each extended class must return a Parent object representing the place where the list nodes will
-     * be created/destroyed
-     * @return Parent object representing the root of the list
-     */
-    protected abstract Parent getListRoot();
+    private Pane listRoot;
 
-    protected FXMLList(String FXMLResourceString) {
-        super(FXMLResourceString);
+    public FXMLList(Pane listRoot) {
+        this.listRoot = listRoot;
+        list = new ArrayList<>();
     }
 
-    public void addElement(T newElem){
-        list.add(newElem);
+    @Override
+    public int size() {
+        return list.size();
     }
 
-    public void removeElement(){
+    @Override
+    public T get(int index) {
+        return list.get(index);
+    }
 
+    @Override
+    public T set(int index, T element) {
+        T ret = list.set(index, element);
+        update();
+        return ret;
+    }
+
+    @Override
+    public void add(int index, T element) {
+        list.add(index, element);
+        update();
+    }
+
+    @Override
+    public T remove(int index) {
+        T ret = list.remove(index);
+        update();
+        return ret;
+    }
+
+    protected void update(){
+        ArrayList<Parent> fxmlList = new ArrayList<>(list.size());
+        for(T elem : list){
+            fxmlList.add(elem.getRoot());
+        }
+
+        listRoot.getChildren().setAll(fxmlList);
     }
 }

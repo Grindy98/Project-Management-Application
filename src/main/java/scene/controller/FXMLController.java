@@ -17,12 +17,10 @@ public abstract class FXMLController {
         root = null;
         loader = new FXMLLoader(this.getClass().getResource(FXMLResourceString));
         loader.setController(this);
+        resetRoot();
     }
 
-    protected final Parent getRoot(){
-        if(root == null){
-            return resetRoot();
-        }
+    public final Parent getRoot(){
         return root;
     }
 

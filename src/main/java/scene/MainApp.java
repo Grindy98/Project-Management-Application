@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import scene.controller.implementations.StartPageController;
+import scene.controller.implementations.TestList;
 
 import java.io.IOException;
 
@@ -15,7 +16,7 @@ public class MainApp extends Application{
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new StartPageController().getScene();
+        scene = new TestList().getScene();
         stage.setScene(scene);
         stage.show();
     }
