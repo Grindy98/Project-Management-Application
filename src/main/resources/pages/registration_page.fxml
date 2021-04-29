@@ -69,7 +69,13 @@
                         <Region prefWidth="1000.0" HBox.hgrow="ALWAYS" />
                     </children>
                 </HBox>
-                <Region layoutX="10.0" layoutY="200.0" minHeight="20.0" />
+                <Region layoutX="10.0" layoutY="200.0" minHeight="7.0" prefHeight="7.0" prefWidth="600.0" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="userErrorLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="12.0" prefWidth="131.0" text="Username already exists!" textFill="RED" />
+               </children>
+            </HBox>
+            <Region minHeight="6.0" prefHeight="6.0" prefWidth="600.0" />
                 <HBox layoutX="10.0" layoutY="197.0">
                     <children>
                         <Region prefWidth="1000.0" HBox.hgrow="ALWAYS" />
@@ -88,7 +94,13 @@
                         <Region prefWidth="1000.0" HBox.hgrow="ALWAYS" />
                     </children>
                 </HBox>
-            <Region minHeight="20.0" />
+            <Region minHeight="3.0" prefHeight="3.0" prefWidth="600.0" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="passErrorLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="255.0" text="Password must be at least 8 characters long!" textFill="RED" />
+               </children>
+            </HBox>
+            <Region minHeight="5.0" prefHeight="5.0" prefWidth="600.0" />
             <HBox>
                <children>
                   <Region prefWidth="1000.0" HBox.hgrow="ALWAYS" />
@@ -107,7 +119,13 @@
                   <Region prefWidth="1000.0" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
-            <Region minHeight="20.0" />
+            <Region minHeight="7.0" prefHeight="7.0" prefWidth="600.0" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="addressErrorLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="255.0" text="Invalid address!" textFill="RED" />
+               </children>
+            </HBox>
+            <Region minHeight="6.0" prefHeight="6.0" prefWidth="600.0" />
             <HBox>
                <children>
                   <Region prefWidth="1000.0" HBox.hgrow="ALWAYS" />
@@ -126,7 +144,13 @@
                   <Region prefWidth="1000.0" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
-            <Region minHeight="20.0" />
+            <Region minHeight="7.0" prefHeight="7.0" prefWidth="600.0" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="phoneErrorLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="255.0" text="Phone number must contain only digits!" textFill="RED" />
+               </children>
+            </HBox>
+            <Region minHeight="8.0" prefHeight="8.0" prefWidth="600.0" />
             <HBox>
                <children>
                   <Region prefWidth="1000.0" HBox.hgrow="ALWAYS" />

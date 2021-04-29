@@ -1,9 +1,7 @@
 package scene.controller.implementations;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import scene.controller.SceneController;
 
@@ -21,13 +19,33 @@ public class RegistrationPageController extends SceneController {
     private Button backButton;
     @FXML
     private Button registerButton;
+    @FXML
+    private ChoiceBox<String> roleSelector;
+    @FXML
+    private Label userErrorLabel;
+    @FXML
+    private Label passErrorLabel;
+    @FXML
+    private Label addressErrorLabel;
+    @FXML
+    private Label phoneErrorLabel;
 
     public RegistrationPageController(){
-        super("/pages/registration_page.fxml", 700, 700);
+        super("/pages/registration_page.fxml", 500, 500);
 
-        backButton.setOnAction(e -> {
-            backPressed();
-        });
+        backButton.setOnAction(e -> backPressed());
+
+        //initialize the role selector options
+        roleSelector.setValue("Select role...");
+        roleSelector.getItems().add("Team member");
+        roleSelector.getItems().add("Project manager");
+
+        //hide the error messages
+        userErrorLabel.setVisible(false);
+        passErrorLabel.setVisible(false);
+        addressErrorLabel.setVisible(false);
+        phoneErrorLabel.setVisible(false);
+
     }
 
     private void backPressed() {
