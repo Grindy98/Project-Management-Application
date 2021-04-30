@@ -170,6 +170,12 @@
                </children>
             </HBox>
             <Region minHeight="20.0" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="selectorErrorLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="255.0" text="Please select a role!" textFill="RED" />
+               </children>
+            </HBox>
+            <Region minHeight="20.0" />
                 <HBox VBox.vgrow="NEVER">
                     <children>
                         <Region prefWidth="1000.0" HBox.hgrow="ALWAYS" />
