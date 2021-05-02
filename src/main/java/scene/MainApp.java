@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import scene.controller.implementations.MainPageController;
 import scene.controller.implementations.StartPageController;
@@ -14,14 +15,23 @@ import java.io.IOException;
 public class MainApp extends Application{
 
     private static Scene scene;
+    private static Stage stage;
 
     @Override
     public void start(Stage stage) throws IOException {
+        this.stage = stage;
         setMinSizeStage(stage);
 
         scene = new MainPageController(50).getScene();
         stage.setScene(scene);
         stage.show();
+    }
+
+    public static Stage createPopup(){
+        Stage popup = new Stage();
+        popup.initModality(Modality.APPLICATION_MODAL);
+        popup.initOwner(stage);
+        return popup;
     }
 
     private static void setMinSizeStage(Stage stage){
