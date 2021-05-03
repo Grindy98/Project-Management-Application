@@ -28,7 +28,6 @@ public class MainApp extends Application{
         scene = new MainPageController().getScene();
         stage.setScene(scene);
         stage.show();
-        new ProjectCreatePopup();
     }
 
     @Override

@@ -7,6 +7,7 @@ import javafx.scene.layout.VBox;
 import persistent.Project;
 import scene.MainApp;
 import scene.controller.SceneController;
+import scene.controller.implementations.popups.ProjectCreatePopup;
 import scene.list.FXMLList;
 import scene.list.elements.ProjectMainPageElement;
 
@@ -30,10 +31,14 @@ public class MainPageController extends SceneController {
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
         // After having a way of getting the logged in user
-        if(true){
+        if(false){
             createProjectButton.setManaged(false);
             createProjectButton.setVisible(false);
         }
+
+        createProjectButton.setOnAction(e -> {
+            new ProjectCreatePopup();
+        });
 
         list = new FXMLList<>(listVBox);
 
