@@ -7,6 +7,7 @@ module Project.Management.Application {
 
     opens scene.controller.implementations to javafx.fxml;
     opens persistent to com.fasterxml.jackson.databind;
+    opens user to com.fasterxml.jackson.databind;
 
     exports scene;
     exports scene.controller;
