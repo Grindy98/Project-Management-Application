@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import persistent.Project;
+import scene.ListBind;
 import scene.MainApp;
 import scene.controller.SceneController;
 import scene.controller.implementations.popups.ProjectCreatePopup;
@@ -42,16 +43,9 @@ public class MainPageController extends SceneController {
 
         list = new FXMLList<>(listVBox);
 
-        MainApp.getProjects().forEach(p -> {
-            list.add(new ProjectMainPageElement(p, this::removeFromList));
-        });
+        ListBind.listBind(list, MainApp.getProjects(), (s) ->
+                new ProjectMainPageElement(s));
 
     }
-    private void removeFromList(ProjectMainPageElement elem, Project p){
-        list.remove(p);
-        MainApp.getProjects().remove(p);
-        System.out.println("called on " + p);
-    }
-
-
+    
 }

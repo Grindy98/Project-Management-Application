@@ -65,16 +65,16 @@ public class Project {
         validate();
     }
 
-    public static ArrayList<Project> load(){
+    public static List<Project> load(){
         try {
             return mapper.readValue(FileSystemHandler.FileType.PROJECT.getSavePath().toFile(),
-                    new TypeReference<ArrayList<Project>>(){});
+                    new TypeReference<List<Project>>(){});
         } catch (IOException e) {
             throw new PersistException("Loading project from file failed", e);
         }
     }
 
-    public static void save(ArrayList<Project> list){
+    public static void save(List<Project> list){
         try {
             mapper.writerWithDefaultPrettyPrinter().writeValue(
                     FileSystemHandler.FileType.PROJECT.getSavePath().toFile(), list);

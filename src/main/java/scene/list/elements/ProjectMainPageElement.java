@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import persistent.Project;
+import scene.MainApp;
 import scene.list.FXMLListElement;
 
 public class ProjectMainPageElement extends FXMLListElement {
@@ -21,7 +22,7 @@ public class ProjectMainPageElement extends FXMLListElement {
     @FXML
     private Label nameLabel;
 
-    public ProjectMainPageElement(Project project, DeleterDelegate delegate) {
+    public ProjectMainPageElement(Project project) {
         super("/lists/elements/project_main_page_elem.fxml");
 
         selectButton.setOnAction(e -> {
@@ -30,7 +31,7 @@ public class ProjectMainPageElement extends FXMLListElement {
 
         deleteButton.setOnAction(e -> {
             System.out.println("Delete button pressed");
-            delegate.deleter(this, project);
+            MainApp.getProjects().remove(project);
         });
 
         nameLabel.setText(project.getName());
