@@ -25,7 +25,7 @@ public class MainApp extends Application{
 
         load();
 
-        scene = new MainPageController(50).getScene();
+        scene = new MainPageController().getScene();
         stage.setScene(scene);
         stage.show();
         new ProjectCreatePopup();

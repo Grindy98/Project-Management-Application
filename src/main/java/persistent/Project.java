@@ -100,4 +100,14 @@ public class Project {
                     "Description must be smaller than 1000 characters");
         }
     }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "memberUsernameList=" + memberUsernameList +
+                ", ownerUsername='" + ownerUsername + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

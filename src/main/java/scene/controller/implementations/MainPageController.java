@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
+import persistent.Project;
+import scene.MainApp;
 import scene.controller.SceneController;
 import scene.list.FXMLList;
 import scene.list.elements.ProjectMainPageElement;
@@ -20,7 +22,7 @@ public class MainPageController extends SceneController {
 
     FXMLList<ProjectMainPageElement> list;
 
-    public MainPageController(int testnum) {
+    public MainPageController() {
         super("/pages/main_page.fxml", 600, 400);
 
 
@@ -35,9 +37,15 @@ public class MainPageController extends SceneController {
 
         list = new FXMLList<>(listVBox);
 
-        for(int i = 0; i < testnum; i++){
-            list.add(new ProjectMainPageElement());
-        }
+        MainApp.getProjects().forEach(p -> {
+            list.add(new ProjectMainPageElement(p, this::removeFromList));
+        });
+
+    }
+    private void removeFromList(ProjectMainPageElement elem, Project p){
+        list.remove(p);
+        MainApp.getProjects().remove(p);
+        System.out.println("called on " + p);
     }
 
 
