@@ -49,7 +49,7 @@ public class FileSystemHandler {
 
     public static final Path APP_FULL_PATH = Paths.get(USER_FOLDER, APPLICATION_FOLDER);
 
-    static Path getPathToFile(String... path) {
+    private static Path getPathToFile(String... path) {
         return APP_FULL_PATH.resolve(Paths.get(".", path));
     }
 }

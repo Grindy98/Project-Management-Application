@@ -10,7 +10,6 @@ import scene.controller.implementations.popups.ProjectCreatePopup;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class MainApp extends Application{
 
@@ -25,8 +24,6 @@ public class MainApp extends Application{
         setMinSizeStage(stage, 400, 300);
 
         load();
-
-        projects.add(new Project(Arrays.asList("A"), "owner", "name", "desc"));
 
         scene = new MainPageController(50).getScene();
         stage.setScene(scene);

@@ -48,7 +48,7 @@
                   <Label text="Name" />
                   <TextField fx:id="nameTextField" promptText="Insert project name ..." GridPane.columnIndex="1" />
                   <Label text="Description" GridPane.rowIndex="1" />
-                  <TextArea fx:id="descTextBox" prefHeight="120.0" promptText="Project description ..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextArea fx:id="descTextArea" prefHeight="120.0" promptText="Project description ..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
                <padding>
                   <Insets bottom="10.0" />

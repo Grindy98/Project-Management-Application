@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import persistent.Project;
+import persistent.exception.ProjectValidationFailedException;
 import scene.MainApp;
 import scene.controller.SceneController;
 
@@ -61,14 +63,14 @@ public class ProjectCreatePopup extends SceneController {
         tempArr.add(new UserView("B", "A", "A", "A"));
         tempArr.add(new UserView("C", "A", "A", "A"));
         tempArr.add(new UserView("D", "A", "A", "A"));
-        tempArr.add(new UserView("D", "A", "A", "A"));
-        tempArr.add(new UserView("D", "A", "A", "A"));
-        tempArr.add(new UserView("D", "A", "A", "A"));
-        tempArr.add(new UserView("D", "A", "A", "A"));
-        tempArr.add(new UserView("D", "A", "A", "A"));
-        tempArr.add(new UserView("D", "A", "A", "A"));
-        tempArr.add(new UserView("D", "A", "A", "A"));
-        tempArr.add(new UserView("D", "A", "A", "A"));
+        tempArr.add(new UserView("E", "A", "A", "A"));
+        tempArr.add(new UserView("F", "A", "A", "A"));
+        tempArr.add(new UserView("G", "A", "A", "A"));
+        tempArr.add(new UserView("H", "A", "A", "A"));
+        tempArr.add(new UserView("I", "A", "A", "A"));
+        tempArr.add(new UserView("J", "A", "A", "A"));
+        tempArr.add(new UserView("K", "A", "A", "A"));
+        tempArr.add(new UserView("L", "A", "A", "A"));
         data = FXCollections.observableArrayList(tempArr);
 
         // Table init
@@ -89,6 +91,14 @@ public class ProjectCreatePopup extends SceneController {
         table.setItems(flUser);//Set the table's items using the filtered list
 
         combo.getItems().addAll("None", "Username", "First Name", "Last Name", "Email");
+        combo.valueProperty().addListener((obs, oldValue, newValue) -> {
+            if(newValue.equals( "None")){
+                textField.setDisable(true);
+            }else{
+                textField.setDisable(false);
+            }
+        });
+
         combo.setValue("None");
 
         textField.textProperty().addListener((obs, oldValue, newValue) -> {
@@ -112,8 +122,8 @@ public class ProjectCreatePopup extends SceneController {
             }
         });
 
-        combo.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal)
-                -> {//reset table and textField when new choice is selected
+        combo.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            // reset table and textField when new choice is selected
             if (newVal != null) {
                 textField.setText("");
             }
@@ -121,8 +131,7 @@ public class ProjectCreatePopup extends SceneController {
 
         // Button init
         finishButton.setOnAction(e -> {
-            // Validate, create and add project to project list
-
+            addProject();
         });
         cancelButton.setOnAction(e -> {
             popup.close();
@@ -130,6 +139,49 @@ public class ProjectCreatePopup extends SceneController {
 
         popup.setScene(getScene());
         popup.show();
+    }
+
+    private void addProject(){
+        ArrayList<String> usernames = new ArrayList<>();
+        data.forEach(userView -> {
+            if(userView.getSelect().isSelected()){
+                usernames.add(userView.getUsername());
+            }
+        });
+        usernames.sort(String::compareTo);
+        // To be implemented fully when user is implemented
+        Project newProj = null;
+        try {
+            newProj = new Project(usernames, "this_username",
+                    nameTextField.getText(), descTextArea.getText());
+        } catch (ProjectValidationFailedException e) {
+            // If invalid input present an alert box to the user
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid input alert");
+            alert.setHeaderText("Invalid input!");
+            alert.setContentText(e.getMessage());
+
+            alert.showAndWait();
+            // After alert was closed, close and reload popup
+            reload();
+        }
+        if(newProj != null){
+            // If the validation passed, add the project to the persistent global list
+            MainApp.getProjects().add(newProj);
+            popup.close();
+        }
+
+    }
+
+    private void reload(){
+        nameTextField.setText("");
+        descTextArea.setText("");
+
+        data.forEach(userView -> {
+            userView.getSelect().setSelected(false);
+        });
+
+        combo.setValue("None");
     }
 
     public static class UserView{

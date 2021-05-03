@@ -16,7 +16,7 @@ public class Project {
     private static ObjectMapper mapper;
     static {
         mapper = new ObjectMapper();
-        mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+        mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
     }
 
     private List<String> memberUsernameList;
@@ -26,11 +26,13 @@ public class Project {
     /*tasks
     */
 
-    public Project(List<String> memberUsernameList, String ownerUsername, String name, String description) {
+    public Project(List<String> memberUsernameList, String ownerUsername, String name, String description)
+            throws ProjectValidationFailedException {
         this.memberUsernameList = memberUsernameList;
         this.ownerUsername = ownerUsername;
         this.name = name;
         this.description = description;
+        validate();
     }
 
     private Project(){
@@ -49,16 +51,18 @@ public class Project {
         return name;
     }
 
-    public void setName(String name) {
+    public void setNameWithVal(String name) throws ProjectValidationFailedException {
         this.name = name;
+        validate();
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescriptionWithVal(String description) throws ProjectValidationFailedException {
         this.description = description;
+        validate();
     }
 
     public static ArrayList<Project> load(){
