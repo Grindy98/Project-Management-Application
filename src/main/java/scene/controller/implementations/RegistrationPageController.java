@@ -7,6 +7,7 @@ import scene.controller.SceneController;
 import user.User;
 import user.TeamMember;
 import user.ProjectManager;
+import user.utils.Encryptor;
 
 import java.util.ArrayList;
 
@@ -37,7 +38,7 @@ public class RegistrationPageController extends SceneController {
     @FXML
     private Label selectorErrorLabel;
 
-    public static ArrayList<User> memorizedUsers = new ArrayList<User>();
+    public static ArrayList<User> memorizedUsers;
 
     public RegistrationPageController(){
         super("/pages/registration_page.fxml", 500, 500);
@@ -57,6 +58,7 @@ public class RegistrationPageController extends SceneController {
         phoneErrorLabel.setVisible(false);
         selectorErrorLabel.setVisible(false);
 
+        memorizedUsers = User.load();
     }
 
     private void backPressed() {
@@ -69,7 +71,6 @@ public class RegistrationPageController extends SceneController {
     }
 
     private void registerPressed() {
-        //TODO: parse JSON to validate username
 
         boolean proceed = true;
 
@@ -104,19 +105,39 @@ public class RegistrationPageController extends SceneController {
             selectorErrorLabel.setVisible(false);
         }
 
+        //return if flag is set to false
         if(!proceed)
             return;
 
+        String encPass = Encryptor.encodePassword(usernameTF.getText(), passwordTF.getText());
+
+        //create user and validate its username before adding it to array
         if(roleSelector.getValue().equals("Team member")){
-            User newUser = new TeamMember(usernameTF.getText(), passwordTF.getText(), addressTF.getText(), phoneTF.getText());
+            User newUser = new TeamMember(usernameTF.getText(), encPass, addressTF.getText(), phoneTF.getText());
+
+            for(User user : memorizedUsers){
+                if(newUser.equals(user)){
+                    userErrorLabel.setVisible(true);
+                    return;
+                }
+            }
+
             memorizedUsers.add(newUser);
+            userErrorLabel.setVisible(false);
         }else{
-            User newUser = new ProjectManager(usernameTF.getText(), passwordTF.getText(), addressTF.getText(), phoneTF.getText());
+            User newUser = new ProjectManager(usernameTF.getText(), encPass, addressTF.getText(), phoneTF.getText());
+
+            for(User user : memorizedUsers){
+                if(newUser.equals(user)){
+                    userErrorLabel.setVisible(true);
+                    return;
+                }
+            }
+
             memorizedUsers.add(newUser);
+            userErrorLabel.setVisible(false);
         }
 
-
-        //TODO: write to JSON file if validation passed
         System.out.println("Registration successfull");
     }
 }

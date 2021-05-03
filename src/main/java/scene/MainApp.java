@@ -56,18 +56,12 @@ public class MainApp extends Application{
         arr.add(user3);
         //System.out.println(arr);
         User.save(arr);*/
-        String s1 = "abcd";
-        String s2 = "abcd";
-        String s3 = "123";
-        String s4 = "123";
-        String r1 = Encryptor.encodePassword(s3, s1);
-        String r2 = Encryptor.encodePassword(s4, s2);
-        if(r1.equals(r2))
-        {
+        User u1 = new TeamMember("anc", "aa1e2a", "aaa", "0911");
+        User u2 = new ProjectManager("anc", "aaa", "aaa", "0911");
+        if(u1.equals(u2))
             System.out.println("equal");
-        }
         else
-            System.out.println("not");
+            System.out.println("not equal");
 
     }
 

@@ -6,8 +6,6 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import persistent.TestPersistent;
-import persistent.TestPersistentSubclass;
 import persistent.service.FileSystemHandler;
 
 import java.io.IOException;
@@ -55,6 +53,14 @@ public abstract class User {
     }
 
     protected User(){}
+
+    @Override
+    public boolean equals(Object o){
+        if(o instanceof User){
+            return (this.username.equals(((User)o).username));
+        }
+        return false;
+    }
 
     public static ArrayList<User> load(){
         try {
