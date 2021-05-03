@@ -5,12 +5,8 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import persistent.Project;
-import persistent.TestPersistent;
-import persistent.TestPersistentSubclass;
 import scene.controller.implementations.MainPageController;
-import scene.controller.implementations.StartPageController;
-import scene.controller.implementations.TestList;
-import scene.controller.implementations.popups.CreateProjectPopup;
+import scene.controller.implementations.popups.ProjectCreatePopup;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,17 +31,9 @@ public class MainApp extends Application{
         scene = new MainPageController(50).getScene();
         stage.setScene(scene);
         stage.show();
-        new CreateProjectPopup();
+        new ProjectCreatePopup();
     }
 
-    public static Stage createPopup(){
-        Stage popup = new Stage();
-        popup.initModality(Modality.APPLICATION_MODAL);
-        popup.initOwner(stage);
-        return popup;
-    }
-
-    private static void setMinSizeStage(Stage stage){
     @Override
     public void stop(){
         save();
