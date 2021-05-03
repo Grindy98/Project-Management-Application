@@ -14,8 +14,9 @@ public class FileSystemHandler {
 
     public enum FileType{
         TEST("/save_models/empty_save.json",
-                "testPersistent");
-        //PROJECT,
+                "testPersistent"),
+        PROJECT("/save_models/empty_save.json",
+                "project");
         //USER;
 
         private final Path savePath;

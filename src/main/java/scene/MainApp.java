@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import persistent.Project;
 import persistent.TestPersistent;
 import persistent.TestPersistentSubclass;
 import scene.controller.implementations.MainPageController;
@@ -19,28 +20,39 @@ public class MainApp extends Application{
     private static Scene scene;
     private static Stage stage;
 
+    private static ArrayList<Project> projects;
+
     @Override
     public void start(Stage stage) throws IOException {
         this.stage = stage;
-        setMinSizeStage(stage);
+        setMinSizeStage(stage, 400, 300);
+
+        load();
+
+        projects.add(new Project(Arrays.asList("A"), "owner", "name", "desc"));
 
         scene = new MainPageController(50).getScene();
         stage.setScene(scene);
         stage.show();
+    }
 
-        TestPersistent t = new TestPersistent(5, "me");
-        TestPersistent t2 = new TestPersistent(7, "me3");
-        TestPersistent t3 = new TestPersistentSubclass(5, "me2", "fi21f9bwq");
+    @Override
+    public void stop(){
+        save();
+    }
 
-        ArrayList<TestPersistent> arr = TestPersistent.load();
-        System.out.println(arr);
-        arr = new ArrayList<>(3);
-        arr.add(t);
-        arr.add(t2);
-        arr.add(t3);
-        System.out.println(arr);
+    public static void load(){
+        // Load from memory
+        projects = Project.load();
+    }
 
-        TestPersistent.save(arr);
+    public static void save(){
+        // Save to memory
+        Project.save(projects);
+    }
+
+    public static ArrayList<Project> getProjects() {
+        return projects;
     }
 
     public static Stage createPopup(){
@@ -50,18 +62,18 @@ public class MainApp extends Application{
         return popup;
     }
 
-    private static void setMinSizeStage(Stage stage){
+    private static void setMinSizeStage(Stage stage, int minWidth, int minHeight){
         stage.widthProperty().addListener((o, oldValue, newValue)->{
-            if(newValue.intValue() < 400.0) {
+            if(newValue.intValue() < minWidth) {
                 stage.setResizable(false);
-                stage.setWidth(400);
+                stage.setWidth(minWidth);
                 stage.setResizable(true);
             }
         });
         stage.heightProperty().addListener((o, oldValue, newValue)->{
-            if(newValue.intValue() < 300.0) {
+            if(newValue.intValue() < minHeight) {
                 stage.setResizable(false);
-                stage.setHeight(300);
+                stage.setHeight(minHeight);
                 stage.setResizable(true);
             }
         });
