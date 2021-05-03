@@ -17,6 +17,7 @@ import user.TeamMember;
 import user.User;
 import user.TeamMember;
 import user.ProjectManager;
+import user.utils.Encryptor;
 
 public class MainApp extends Application{
 
@@ -40,7 +41,7 @@ public class MainApp extends Application{
         arr.add(t3);
         System.out.println(arr);
 
-        TestPersistent.save(arr);*/
+        TestPersistent.save(arr);
 
         User user1 = new TeamMember("abcd", "pasdaf", "str a", "01741032");
         User user2 = new ProjectManager("eee", "gfh", "str b", "01111111");
@@ -49,11 +50,32 @@ public class MainApp extends Application{
         ArrayList<User> arr = User.load();
         System.out.println(arr);
         arr.add(user1);
-        arr.add(user2);
-        arr.add(user3);
-        System.out.println(arr);
-        User.save(arr);
+        User user4 = new TeamMember("ndd", "qqqqq", "str d", "0000000");
 
+        arr.add(user4);
+        arr.add(user3);
+        //System.out.println(arr);
+        User.save(arr);*/
+        String s1 = "abcd";
+        String s2 = "abcd";
+        String s3 = "123";
+        String s4 = "123";
+        String r1 = Encryptor.encodePassword(s3, s1);
+        String r2 = Encryptor.encodePassword(s4, s2);
+        if(r1.equals(r2))
+        {
+            System.out.println("equal");
+        }
+        else
+            System.out.println("not");
+
+    }
+
+    @Override
+    public void stop(){
+        System.out.println("Stage is closing");
+        System.out.println(RegistrationPageController.memorizedUsers);
+        User.save(RegistrationPageController.memorizedUsers);
     }
 
     public static void main(String[] args) {

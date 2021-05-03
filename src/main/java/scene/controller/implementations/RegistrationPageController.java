@@ -4,6 +4,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import scene.controller.SceneController;
+import user.User;
+import user.TeamMember;
+import user.ProjectManager;
+
+import java.util.ArrayList;
 
 public class RegistrationPageController extends SceneController {
 
@@ -31,6 +36,8 @@ public class RegistrationPageController extends SceneController {
     private Label phoneErrorLabel;
     @FXML
     private Label selectorErrorLabel;
+
+    public static ArrayList<User> memorizedUsers = new ArrayList<User>();
 
     public RegistrationPageController(){
         super("/pages/registration_page.fxml", 500, 500);
@@ -99,6 +106,15 @@ public class RegistrationPageController extends SceneController {
 
         if(!proceed)
             return;
+
+        if(roleSelector.getValue().equals("Team member")){
+            User newUser = new TeamMember(usernameTF.getText(), passwordTF.getText(), addressTF.getText(), phoneTF.getText());
+            memorizedUsers.add(newUser);
+        }else{
+            User newUser = new ProjectManager(usernameTF.getText(), passwordTF.getText(), addressTF.getText(), phoneTF.getText());
+            memorizedUsers.add(newUser);
+        }
+
 
         //TODO: write to JSON file if validation passed
         System.out.println("Registration successfull");

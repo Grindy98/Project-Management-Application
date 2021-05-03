@@ -12,4 +12,5 @@ module Project.Management.Application {
     exports scene;
     exports scene.controller;
     exports scene.controller.implementations;
+    exports user;
 }
