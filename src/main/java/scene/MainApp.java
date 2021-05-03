@@ -1,6 +1,8 @@
 package scene;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -16,7 +18,7 @@ public class MainApp extends Application{
     private static Scene scene;
     private static Stage stage;
 
-    private static ArrayList<Project> projects;
+    private static ObservableList<Project> projects;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -37,7 +39,7 @@ public class MainApp extends Application{
 
     public static void load(){
         // Load from memory
-        projects = Project.load();
+        projects = FXCollections.observableArrayList(Project.load());
     }
 
     public static void save(){
@@ -45,7 +47,7 @@ public class MainApp extends Application{
         Project.save(projects);
     }
 
-    public static ArrayList<Project> getProjects() {
+    public static ObservableList<Project> getProjects() {
         return projects;
     }
 
