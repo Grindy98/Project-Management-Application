@@ -8,7 +8,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 public enum SceneType{
-    LOGIN(StartPageController.class, true),
+    START(StartPageController.class, true),
     REGISTER(RegistrationPageController.class, true),
     //MAIN_PAGE,
     ;
