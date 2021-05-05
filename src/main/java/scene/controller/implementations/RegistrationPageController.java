@@ -111,7 +111,7 @@ public class RegistrationPageController extends SceneController {
 
         String encPass = Encryptor.encodePassword(usernameTF.getText(), passwordTF.getText());
 
-        //create persistent.user and validate its username before adding it to array
+        //create user and validate its username before adding it to array
         if(roleSelector.getValue().equals("Team member")){
             User newUser = new TeamMember(usernameTF.getText(), encPass, addressTF.getText(), phoneTF.getText());
 
