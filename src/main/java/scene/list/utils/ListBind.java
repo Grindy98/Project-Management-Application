@@ -1,10 +1,12 @@
-package scene;
+package scene.list.utils;
 
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public interface ListBind<T, S> {
 
@@ -40,4 +42,26 @@ public interface ListBind<T, S> {
         };
         source.addListener(listener);
     }
+
+    /*
+    static <T, S> void setBind(Set<T> target,
+                                ObservableList<S> source,
+                                ListBind<T, S> binder) {
+        target.clear();
+        target.addAll(binder.changeToTargetArray(source));
+        ListChangeListener<S> listener = change -> {
+            while(change.next()) {
+                change.getRemoved().forEach(s -> {
+                    target.remove(binder.changeToTarget(s));
+                });
+                change.getAddedSubList().forEach(s -> {
+                    if(!target.add(binder.changeToTarget(s))){
+                        throw new RuntimeException("Is not an unique object in set: " + s.toString());
+                    }
+                });
+            }
+        };
+        source.addListener(listener);
+    }
+    */
 }

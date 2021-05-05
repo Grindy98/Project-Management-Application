@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import persistent.user.User;
 import scene.MainApp;
 import scene.SceneType;
 import scene.controller.SceneController;
@@ -36,7 +37,7 @@ public class StartPageController extends SceneController {
     }
 
     private void onLogin(){
-        // Check credentials
+
         System.out.println("Login");
     }
 }

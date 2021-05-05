@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import persistent.exception.PersistException;
 import persistent.exception.ProjectValidationFailedException;
 import persistent.service.FileSystemHandler;
@@ -13,10 +15,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Project {
+
     private static ObjectMapper mapper;
+
+    private static final ObservableList<Project> projects;
     static {
         mapper = new ObjectMapper();
         mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+
+        projects = FXCollections.observableArrayList();
     }
 
     private List<String> memberUsernameList;
@@ -65,22 +72,26 @@ public class Project {
         validate();
     }
 
-    public static List<Project> load(){
+    public static void load(){
         try {
-            return mapper.readValue(FileSystemHandler.FileType.PROJECT.getSavePath().toFile(),
-                    new TypeReference<List<Project>>(){});
+            projects.addAll(mapper.readValue(FileSystemHandler.FileType.PROJECT.getSavePath().toFile(),
+                    new TypeReference<List<Project>>(){}));
         } catch (IOException e) {
             throw new PersistException("Loading project from file failed", e);
         }
     }
 
-    public static void save(List<Project> list){
+    public static void save(){
         try {
             mapper.writerWithDefaultPrettyPrinter().writeValue(
-                    FileSystemHandler.FileType.PROJECT.getSavePath().toFile(), list);
+                    FileSystemHandler.FileType.PROJECT.getSavePath().toFile(), projects);
         } catch (IOException e) {
             throw new PersistException("Saving project to file failed", e);
         }
+    }
+
+    public static ObservableList<Project> getProjects(){
+        return projects;
     }
 
     private void validate() throws ProjectValidationFailedException {

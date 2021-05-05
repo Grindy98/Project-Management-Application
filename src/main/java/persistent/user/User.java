@@ -6,10 +6,17 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableMap;
 import persistent.service.FileSystemHandler;
+import scene.MainApp;
+import scene.list.utils.MapBind;
 
 import java.io.IOException;
+import java.util.AbstractMap;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
@@ -25,9 +32,13 @@ public abstract class User {
 
     private final String type = "User";
     private static ObjectMapper mapper;
+
+    private static final ObservableMap<String, User> users;
     static {
         mapper = new ObjectMapper();
         mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+
+        users = FXCollections.observableHashMap();
     }
 
     protected String username;
@@ -62,21 +73,49 @@ public abstract class User {
         return false;
     }
 
-    public static List<User> load(){
+    @Override
+    public int hashCode() {
+        return username.hashCode();
+    }
+
+    public static void load(){
+        List<User> list;
         try {
-            return mapper.readValue(FileSystemHandler.FileType.USER.getSavePath().toFile(),
+            list =  mapper.readValue(FileSystemHandler.FileType.USER.getSavePath().toFile(),
                     new TypeReference<List<User>>(){});
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        for (User u : list) {
+            users.put(u.getUsername(), u);
+        }
     }
 
-    public static void save(List<User> list) {
+    public static void save() {
+        List<User> list = List.copyOf(users.values());
         try {
             mapper.writerWithDefaultPrettyPrinter().writeValue(FileSystemHandler.FileType.USER.getSavePath().toFile(), list);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
+    public static ObservableMap<String, User> getUsers(){
+        return users;
+    }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPasswd() {
+        return passwd;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
 }

@@ -116,26 +116,26 @@ public class RegistrationPageController extends SceneController {
         if(roleSelector.getValue().equals("Team member")){
             User newUser = new TeamMember(usernameTF.getText(), encPass, addressTF.getText(), phoneTF.getText());
 
-            for(User user : MainApp.getUsers()){
+            for(User user : User.getUsers().values()){
                 if(newUser.equals(user)){
                     userErrorLabel.setVisible(true);
                     return;
                 }
             }
 
-            MainApp.getUsers().add(newUser);
+            User.getUsers().put(newUser.getUsername(), newUser);
             userErrorLabel.setVisible(false);
         }else{
             User newUser = new ProjectManager(usernameTF.getText(), encPass, addressTF.getText(), phoneTF.getText());
 
-            for(User user : MainApp.getUsers()){
+            for(User user : User.getUsers().values()){
                 if(newUser.equals(user)){
                     userErrorLabel.setVisible(true);
                     return;
                 }
             }
 
-            MainApp.getUsers().add(newUser);
+            User.getUsers().put(newUser.getUsername(), newUser);
             userErrorLabel.setVisible(false);
         }
 

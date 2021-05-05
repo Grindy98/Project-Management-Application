@@ -167,7 +167,7 @@ public class ProjectCreatePopup extends SceneController {
         }
         if(newProj != null){
             // If the validation passed, add the project to the persistent global list
-            MainApp.getProjects().add(newProj);
+            Project.getProjects().add(newProj);
             popup.close();
         }
 

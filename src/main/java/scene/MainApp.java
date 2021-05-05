@@ -3,20 +3,20 @@ package scene;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import persistent.Project;
+import persistent.exception.ProjectValidationFailedException;
 import persistent.user.User;
 
 import java.io.IOException;
+import java.util.List;
 
 public class MainApp extends Application{
     private static Stage stage;
     
     private static User loggedIn;
-
-    private static ObservableList<Project> projects;
-    private static ObservableList<User> users;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -39,22 +39,14 @@ public class MainApp extends Application{
 
     public static void load(){
         // Load from memory
-        projects = FXCollections.observableArrayList(Project.load());
-        users = FXCollections.observableArrayList(User.load());
+        Project.load();
+        User.load();
     }
 
     public static void save(){
         // Save to memory
-        Project.save(projects);
-        User.save(users);
-    }
-
-    public static ObservableList<Project> getProjects() {
-        return projects;
-    }
-
-    public static ObservableList<User> getUsers() {
-        return users;
+        Project.save();
+        User.save();
     }
 
     public static Stage createPopup(){

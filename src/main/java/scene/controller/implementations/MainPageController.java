@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import persistent.Project;
-import scene.ListBind;
+import scene.list.utils.ListBind;
 import scene.MainApp;
 import scene.controller.SceneController;
 import scene.controller.implementations.popups.ProjectCreatePopup;
@@ -43,7 +43,7 @@ public class MainPageController extends SceneController {
 
         list = new FXMLList<>(listVBox);
 
-        ListBind.listBind(list, MainApp.getProjects(), (s) ->
+        ListBind.listBind(list, Project.getProjects(), (s) ->
                 new ProjectMainPageElement(s));
 
     }

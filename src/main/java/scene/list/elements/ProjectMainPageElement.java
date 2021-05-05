@@ -31,7 +31,7 @@ public class ProjectMainPageElement extends FXMLListElement {
 
         deleteButton.setOnAction(e -> {
             System.out.println("Delete button pressed");
-            MainApp.getProjects().remove(project);
+            Project.getProjects().remove(project);
         });
 
         nameLabel.setText(project.getName());
