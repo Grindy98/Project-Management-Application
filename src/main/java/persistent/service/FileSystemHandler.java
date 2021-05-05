@@ -44,7 +44,7 @@ public class FileSystemHandler {
     }
 
     private static final String APPLICATION_FOLDER = ".project-management-app";
-    private static final String USER_FOLDER = System.getProperty("user.home");
+    private static final String USER_FOLDER = System.getProperty("persistent.user.home");
 
     public static final Path APP_FULL_PATH = Paths.get(USER_FOLDER, APPLICATION_FOLDER);
 

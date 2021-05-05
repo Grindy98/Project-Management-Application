@@ -1,21 +1,21 @@
-package user;
+package persistent.user;
 
-public class ProjectManager extends User {
+public class TeamMember extends User {
 
-    private final String type = "ProjectManager";
+    private final String type = "TeamMember";
 
-    public ProjectManager(String username, String passwd, String address, String phone){
+    public TeamMember(String username, String passwd, String address, String phone){
         super(username, passwd, address, phone);
     }
 
     @Override
     public String toString(){
-        return "ProjectManager{" +
+        return "TeamMember{" +
                 "username=" + username +
                 ", passwd=" + passwd +
                 ", address=" + address +
                 ", phone=" + phone + "}";
     }
 
-    private ProjectManager(){}
+    private TeamMember(){}
 }

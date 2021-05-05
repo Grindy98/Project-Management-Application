@@ -1,4 +1,4 @@
-package user;
+package persistent.user;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonSubTypes;

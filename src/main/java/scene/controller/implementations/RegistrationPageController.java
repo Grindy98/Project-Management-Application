@@ -4,10 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import scene.controller.SceneController;
-import user.User;
-import user.TeamMember;
-import user.ProjectManager;
-import user.utils.Encryptor;
+import persistent.user.User;
+import persistent.user.TeamMember;
+import persistent.user.ProjectManager;
+import persistent.user.utils.Encryptor;
 
 import java.util.ArrayList;
 
@@ -111,7 +111,7 @@ public class RegistrationPageController extends SceneController {
 
         String encPass = Encryptor.encodePassword(usernameTF.getText(), passwordTF.getText());
 
-        //create user and validate its username before adding it to array
+        //create persistent.user and validate its username before adding it to array
         if(roleSelector.getValue().equals("Team member")){
             User newUser = new TeamMember(usernameTF.getText(), encPass, addressTF.getText(), phoneTF.getText());
 

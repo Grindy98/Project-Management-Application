@@ -3,21 +3,13 @@ package scene;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import persistent.TestPersistent;
-import persistent.TestPersistentSubclass;
-import scene.controller.implementations.StartPageController;
 import scene.controller.implementations.RegistrationPageController;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
-import user.ProjectManager;
-import user.TeamMember;
-import user.User;
-import user.TeamMember;
-import user.ProjectManager;
-import user.utils.Encryptor;
+import persistent.user.ProjectManager;
+import persistent.user.TeamMember;
+import persistent.user.User;
 
 public class MainApp extends Application{
 
