@@ -11,14 +11,20 @@ import java.net.URL;
  */
 public abstract class FXMLController {
     private FXMLLoader loader;
+    private Parent root;
 
     protected FXMLController(String FXMLResourceString) {
+        root = null;
         loader = new FXMLLoader(this.getClass().getResource(FXMLResourceString));
         loader.setController(this);
+        resetRoot();
     }
 
-    protected final Parent getRoot(){
-        Parent root = null;
+    public final Parent getRoot(){
+        return root;
+    }
+
+    protected final Parent resetRoot(){
         try {
             root = loader.load();
         } catch (IOException e) {

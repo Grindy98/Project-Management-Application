@@ -24,7 +24,7 @@ public class TestPersistent {
     private static ObjectMapper mapper;
     static {
         mapper = new ObjectMapper();
-        mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+        mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
     }
 
     int x;
