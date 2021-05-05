@@ -9,8 +9,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import persistent.Project;
 import persistent.exception.ProjectValidationFailedException;
+import persistent.user.User;
 import scene.MainApp;
 import scene.controller.SceneController;
+import scene.list.utils.MapBind;
 
 import java.util.ArrayList;
 
@@ -31,11 +33,9 @@ public class ProjectCreatePopup extends SceneController {
     @FXML
     private TableColumn<UserView, String> usernameCol;
     @FXML
-    private TableColumn<UserView, String> firstNameCol;
+    private TableColumn<UserView, String> phoneNumCol;
     @FXML
-    private TableColumn<UserView, String> lastNameCol;
-    @FXML
-    private TableColumn<UserView, String> emailCol;
+    private TableColumn<UserView, String> addressCol;
     @FXML
     private TableColumn<UserView, String> selectCol;
 
@@ -56,41 +56,25 @@ public class ProjectCreatePopup extends SceneController {
         popup.setTitle("Create new project");
         popup.setResizable(false);
 
-        //Get all users after implementing that
-        ArrayList<UserView> tempArr = new ArrayList<>();
-        // Foreach assign
-        tempArr.add(new UserView("A", "A", "A", "A"));
-        tempArr.add(new UserView("B", "A", "A", "A"));
-        tempArr.add(new UserView("C", "A", "A", "A"));
-        tempArr.add(new UserView("D", "A", "A", "A"));
-        tempArr.add(new UserView("E", "A", "A", "A"));
-        tempArr.add(new UserView("F", "A", "A", "A"));
-        tempArr.add(new UserView("G", "A", "A", "A"));
-        tempArr.add(new UserView("H", "A", "A", "A"));
-        tempArr.add(new UserView("I", "A", "A", "A"));
-        tempArr.add(new UserView("J", "A", "A", "A"));
-        tempArr.add(new UserView("K", "A", "A", "A"));
-        tempArr.add(new UserView("L", "A", "A", "A"));
-        data = FXCollections.observableArrayList(tempArr);
+        data = FXCollections.observableArrayList();
+        MapBind.mapBind(data, User.getUsers(), UserView::new);
 
         // Table init
         table.setEditable(true);
 
-        firstNameCol.setCellValueFactory(
-                new PropertyValueFactory<>("firstName"));
-        lastNameCol.setCellValueFactory(
-                new PropertyValueFactory<>("lastName"));
+        addressCol.setCellValueFactory(
+                new PropertyValueFactory<>("address"));
+        phoneNumCol.setCellValueFactory(
+                new PropertyValueFactory<>("phoneNumber"));
         usernameCol.setCellValueFactory(
                 new PropertyValueFactory<>("username"));
-        emailCol.setCellValueFactory(
-                new PropertyValueFactory<>("email"));
         selectCol.setCellValueFactory(
                 new PropertyValueFactory<>("select"));
 
         FilteredList<UserView> flUser = new FilteredList<>(data, p -> true);//Pass the data to a filtered list
         table.setItems(flUser);//Set the table's items using the filtered list
 
-        combo.getItems().addAll("None", "Username", "First Name", "Last Name", "Email");
+        combo.getItems().addAll("None", "Username", "Phone Number", "Address");
         combo.valueProperty().addListener((obs, oldValue, newValue) -> {
             if(newValue.equals( "None")){
                 textField.setDisable(true);
@@ -107,17 +91,14 @@ public class ProjectCreatePopup extends SceneController {
                 case "None":
                     flUser.setPredicate(p -> true);
                     break;
-                case "First Name":
-                    flUser.setPredicate(p -> p.getFirstName().toLowerCase().contains(newValue.toLowerCase().trim()));//filter table by first name
+                case "Phone Number":
+                    flUser.setPredicate(p -> p.getPhoneNumber().toLowerCase().contains(newValue.toLowerCase().trim()));//filter table by first name
                     break;
                 case "Username":
                     flUser.setPredicate(p -> p.getUsername().toLowerCase().contains(newValue.toLowerCase().trim()));//filter table by first name
                     break;
-                case "Last Name":
-                    flUser.setPredicate(p -> p.getLastName().toLowerCase().contains(newValue.toLowerCase().trim()));//filter table by last name
-                    break;
-                case "Email":
-                    flUser.setPredicate(p -> p.getEmail().toLowerCase().contains(newValue.toLowerCase().trim()));//filter table by email
+                case "Address":
+                    flUser.setPredicate(p -> p.getAddress().toLowerCase().contains(newValue.toLowerCase().trim()));//filter table by last name
                     break;
             }
         });
@@ -186,16 +167,14 @@ public class ProjectCreatePopup extends SceneController {
 
     public static class UserView{
         private String username;
-        private String firstName;
-        private String lastName;
-        private String email;
+        private String phoneNumber;
+        private String address;
         private CheckBox select;
 
-        public UserView(/* user */String u, String f, String l, String e){
-            this.username = u;
-            this.firstName = f;
-            this.lastName = l;
-            this.email = e;
+        public UserView(User user){
+            this.username = user.getUsername();
+            this.phoneNumber = user.getPhone();
+            this.address = user.getAddress();
 
             this.select = new CheckBox();
         }
@@ -204,16 +183,12 @@ public class ProjectCreatePopup extends SceneController {
             return username;
         }
 
-        public String getFirstName() {
-            return firstName;
+        public String getPhoneNumber() {
+            return phoneNumber;
         }
 
-        public String getLastName() {
-            return lastName;
-        }
-
-        public String getEmail() {
-            return email;
+        public String getAddress() {
+            return address;
         }
 
         public CheckBox getSelect() {

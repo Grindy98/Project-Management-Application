@@ -1,6 +1,7 @@
 package scene;
 
 import scene.controller.SceneController;
+import scene.controller.implementations.MainPageController;
 import scene.controller.implementations.RegistrationPageController;
 import scene.controller.implementations.StartPageController;
 
@@ -10,7 +11,7 @@ import java.lang.reflect.InvocationTargetException;
 public enum SceneType{
     START(StartPageController.class, true),
     REGISTER(RegistrationPageController.class, true),
-    //MAIN_PAGE,
+    MAIN_PAGE(MainPageController.class, true),
     ;
     private final Constructor<? extends SceneController> sceneConstr;
     private final SceneController controller;
@@ -18,7 +19,7 @@ public enum SceneType{
     SceneType(Class<? extends SceneController> scene, boolean reload){
         this.sceneConstr= (Constructor<? extends SceneController>) scene.getConstructors()[0];
         // If controller is null, then we reload it each time
-        if(reload){
+        if(reload == false){
             try {
                 controller = sceneConstr.newInstance();
             } catch (Exception e) {

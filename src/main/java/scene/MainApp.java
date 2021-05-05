@@ -27,7 +27,7 @@ public class MainApp extends Application{
         loggedIn = null;
 
         // Initial scene
-        changeToScene(SceneType.START);
+        changeToScene(SceneType.MAIN_PAGE);
         stage.show();
     }
 
