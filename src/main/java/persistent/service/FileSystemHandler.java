@@ -13,8 +13,6 @@ import java.nio.file.Paths;
 public class FileSystemHandler {
 
     public enum FileType{
-        TEST("/save_models/empty_save.json",
-            "testPersistent"),
         PROJECT("/save_models/empty_save.json",
             "project"),
         USER("/save_models/empty_save.json",
