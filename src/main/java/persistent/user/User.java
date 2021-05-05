@@ -1,4 +1,4 @@
-package user;
+package persistent.user;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import persistent.service.FileSystemHandler;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
@@ -62,16 +62,16 @@ public abstract class User {
         return false;
     }
 
-    public static ArrayList<User> load(){
+    public static List<User> load(){
         try {
             return mapper.readValue(FileSystemHandler.FileType.USER.getSavePath().toFile(),
-                    new TypeReference<ArrayList<User>>(){});
+                    new TypeReference<List<User>>(){});
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static void save(ArrayList<User> list) {
+    public static void save(List<User> list) {
         try {
             mapper.writerWithDefaultPrettyPrinter().writeValue(FileSystemHandler.FileType.USER.getSavePath().toFile(), list);
         } catch (IOException e) {

@@ -3,11 +3,13 @@ package scene.controller.implementations;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import scene.MainApp;
+import scene.SceneType;
 import scene.controller.SceneController;
-import user.User;
-import user.TeamMember;
-import user.ProjectManager;
-import user.utils.Encryptor;
+import persistent.user.User;
+import persistent.user.TeamMember;
+import persistent.user.ProjectManager;
+import persistent.user.utils.Encryptor;
 
 import java.util.ArrayList;
 
@@ -38,8 +40,6 @@ public class RegistrationPageController extends SceneController {
     @FXML
     private Label selectorErrorLabel;
 
-    public static ArrayList<User> memorizedUsers;
-
     public RegistrationPageController(){
         super("/pages/registration_page.fxml", 500, 500);
 
@@ -57,17 +57,18 @@ public class RegistrationPageController extends SceneController {
         addressErrorLabel.setVisible(false);
         phoneErrorLabel.setVisible(false);
         selectorErrorLabel.setVisible(false);
-
-        memorizedUsers = User.load();
     }
 
     private void backPressed() {
+        MainApp.changeToScene(SceneType.START);
+        /*
         scene.getWindow().hide();
         scene = new StartPageController().getScene();
         Stage startStage = new Stage();
         startStage.setScene(scene);
         startStage.show();
         System.out.println("back pressed");
+         */
     }
 
     private void registerPressed() {
@@ -115,26 +116,26 @@ public class RegistrationPageController extends SceneController {
         if(roleSelector.getValue().equals("Team member")){
             User newUser = new TeamMember(usernameTF.getText(), encPass, addressTF.getText(), phoneTF.getText());
 
-            for(User user : memorizedUsers){
+            for(User user : MainApp.getUsers()){
                 if(newUser.equals(user)){
                     userErrorLabel.setVisible(true);
                     return;
                 }
             }
 
-            memorizedUsers.add(newUser);
+            MainApp.getUsers().add(newUser);
             userErrorLabel.setVisible(false);
         }else{
             User newUser = new ProjectManager(usernameTF.getText(), encPass, addressTF.getText(), phoneTF.getText());
 
-            for(User user : memorizedUsers){
+            for(User user : MainApp.getUsers()){
                 if(newUser.equals(user)){
                     userErrorLabel.setVisible(true);
                     return;
                 }
             }
 
-            memorizedUsers.add(newUser);
+            MainApp.getUsers().add(newUser);
             userErrorLabel.setVisible(false);
         }
 

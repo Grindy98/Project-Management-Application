@@ -6,11 +6,18 @@ module Project.Management.Application {
     requires com.fasterxml.jackson.databind;
 
     opens scene.controller.implementations to javafx.fxml;
+    opens scene.controller.implementations.popups to javafx.fxml;
+    opens scene.list.elements to javafx.fxml;
     opens persistent to com.fasterxml.jackson.databind;
-    opens user to com.fasterxml.jackson.databind;
+    opens persistent.user to com.fasterxml.jackson.databind;
 
+    exports persistent;
+    exports persistent.exception;
     exports scene;
     exports scene.controller;
+    exports scene.list;
     exports scene.controller.implementations;
-    exports user;
+    exports persistent.user;
+    exports scene.controller.implementations.popups;
+    exports scene.list.elements;
 }

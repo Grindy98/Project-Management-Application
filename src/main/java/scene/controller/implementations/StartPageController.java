@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import scene.MainApp;
+import scene.SceneType;
 import scene.controller.SceneController;
 
 import javafx.scene.control.Button;
@@ -28,16 +30,13 @@ public class StartPageController extends SceneController {
             onLogin();
         });
         registerButton.setOnAction(e -> {
-            onRegister();
+            MainApp.changeToScene(SceneType.REGISTER);
         });
         errorMessageLabel.setText("Debug");
     }
 
-    private void onRegister(){
-        System.out.println("Register");
-    }
-
     private void onLogin(){
+        // Check credentials
         System.out.println("Login");
     }
 }

@@ -13,10 +13,11 @@ import java.nio.file.Paths;
 public class FileSystemHandler {
 
     public enum FileType{
-        TEST("/save_models/empty_save.json",
-                "testPersistent"),
-        //PROJECT,
-        USER("/save_models/empty_save.json", "users");
+        PROJECT("/save_models/empty_save.json",
+            "project"),
+        USER("/save_models/empty_save.json",
+            "users"),
+        ;
 
         private final Path savePath;
 
@@ -48,7 +49,7 @@ public class FileSystemHandler {
 
     public static final Path APP_FULL_PATH = Paths.get(USER_FOLDER, APPLICATION_FOLDER);
 
-    static Path getPathToFile(String... path) {
+    private static Path getPathToFile(String... path) {
         return APP_FULL_PATH.resolve(Paths.get(".", path));
     }
 }

@@ -1,75 +1,84 @@
 package scene;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
-import persistent.TestPersistent;
-import persistent.TestPersistentSubclass;
-import scene.controller.implementations.StartPageController;
-import scene.controller.implementations.RegistrationPageController;
+import persistent.Project;
+import persistent.user.User;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import user.ProjectManager;
-import user.TeamMember;
-import user.User;
-import user.TeamMember;
-import user.ProjectManager;
-import user.utils.Encryptor;
 
 public class MainApp extends Application{
+    private static Stage stage;
+    
+    private static User loggedIn;
 
-    private static Scene scene;
+    private static ObservableList<Project> projects;
+    private static ObservableList<User> users;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new RegistrationPageController().getScene();
-        stage.setScene(scene);
+        this.stage = stage;
+
+        // Initialize parameters
+        load();
+        loggedIn = null;
+
+        // Initial scene
+        changeToScene(SceneType.START);
         stage.show();
-
-       /* TestPersistent t = new TestPersistent(5, "me");
-        TestPersistent t2 = new TestPersistent(7, "me3");
-        TestPersistent t3 = new TestPersistentSubclass(5, "me2", "fi21f9bwq");
-
-        ArrayList<TestPersistent> arr = TestPersistent.load();
-        System.out.println(arr);
-        arr = new ArrayList<>(3);
-        arr.add(t);
-        arr.add(t2);
-        arr.add(t3);
-        System.out.println(arr);
-
-        TestPersistent.save(arr);
-
-        User user1 = new TeamMember("abcd", "pasdaf", "str a", "01741032");
-        User user2 = new ProjectManager("eee", "gfh", "str b", "01111111");
-        User user3 = new TeamMember("oooo", "ppppp", "str c", "017409900");
-
-        ArrayList<User> arr = User.load();
-        System.out.println(arr);
-        arr.add(user1);
-        User user4 = new TeamMember("ndd", "qqqqq", "str d", "0000000");
-
-        arr.add(user4);
-        arr.add(user3);
-        //System.out.println(arr);
-        User.save(arr);*/
-        User u1 = new TeamMember("anc", "aa1e2a", "aaa", "0911");
-        User u2 = new ProjectManager("anc", "aaa", "aaa", "0911");
-        if(u1.equals(u2))
-            System.out.println("equal");
-        else
-            System.out.println("not equal");
-
     }
 
     @Override
     public void stop(){
         System.out.println("Stage is closing");
-        System.out.println(RegistrationPageController.memorizedUsers);
-        User.save(RegistrationPageController.memorizedUsers);
+        save();
+    }
+
+    public static void load(){
+        // Load from memory
+        projects = FXCollections.observableArrayList(Project.load());
+        users = FXCollections.observableArrayList(User.load());
+    }
+
+    public static void save(){
+        // Save to memory
+        Project.save(projects);
+        User.save(users);
+    }
+
+    public static ObservableList<Project> getProjects() {
+        return projects;
+    }
+
+    public static ObservableList<User> getUsers() {
+        return users;
+    }
+
+    public static Stage createPopup(){
+        Stage popup = new Stage();
+        popup.initModality(Modality.APPLICATION_MODAL);
+        popup.initOwner(stage);
+        return popup;
+    }
+
+    private static void setMinSizeStage(Stage stage, int minWidth, int minHeight){
+        stage.widthProperty().addListener((o, oldValue, newValue)->{
+            if(newValue.intValue() < minWidth) {
+                stage.setWidth(minWidth);
+            }
+        });
+        stage.heightProperty().addListener((o, oldValue, newValue)->{
+            if(newValue.intValue() < minHeight) {
+                stage.setHeight(minHeight);
+            }
+        });
+    }
+
+    public static void changeToScene(SceneType scene){
+        stage.setScene(scene.getSceneController().getScene());
     }
 
     public static void main(String[] args) {
