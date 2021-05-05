@@ -3,20 +3,14 @@ package scene;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import persistent.Project;
-import scene.controller.implementations.MainPageController;
-import scene.controller.implementations.popups.ProjectCreatePopup;
+import persistent.user.User;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class MainApp extends Application{
-    private static Stage stage;
-
-    private static Scene scene;
     private static Stage stage;
     
     private static User loggedIn;
@@ -27,32 +21,40 @@ public class MainApp extends Application{
     @Override
     public void start(Stage stage) throws IOException {
         this.stage = stage;
-        setMinSizeStage(stage, 400, 300);
 
+        // Initialize parameters
         load();
+        loggedIn = null;
 
-        scene = new MainPageController().getScene();
-        stage.setScene(scene);
+        // Initial scene
+        changeToScene(SceneType.START);
         stage.show();
     }
 
     @Override
     public void stop(){
+        System.out.println("Stage is closing");
         save();
     }
 
     public static void load(){
         // Load from memory
         projects = FXCollections.observableArrayList(Project.load());
+        users = FXCollections.observableArrayList(User.load());
     }
 
     public static void save(){
         // Save to memory
         Project.save(projects);
+        User.save(users);
     }
 
     public static ObservableList<Project> getProjects() {
         return projects;
+    }
+
+    public static ObservableList<User> getUsers() {
+        return users;
     }
 
     public static Stage createPopup(){
@@ -65,18 +67,18 @@ public class MainApp extends Application{
     private static void setMinSizeStage(Stage stage, int minWidth, int minHeight){
         stage.widthProperty().addListener((o, oldValue, newValue)->{
             if(newValue.intValue() < minWidth) {
-                stage.setResizable(false);
                 stage.setWidth(minWidth);
-                stage.setResizable(true);
             }
         });
         stage.heightProperty().addListener((o, oldValue, newValue)->{
             if(newValue.intValue() < minHeight) {
-                stage.setResizable(false);
                 stage.setHeight(minHeight);
-                stage.setResizable(true);
             }
         });
+    }
+
+    public static void changeToScene(SceneType scene){
+        stage.setScene(scene.getSceneController().getScene());
     }
 
     public static void main(String[] args) {
