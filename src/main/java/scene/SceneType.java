@@ -1,6 +1,7 @@
 package scene;
 
 import scene.controller.SceneController;
+import scene.controller.implementations.MainPageController;
 import scene.controller.implementations.RegistrationPageController;
 import scene.controller.implementations.StartPageController;
 
@@ -10,8 +11,8 @@ import java.lang.reflect.InvocationTargetException;
 public enum SceneType{
     START(StartPageController.class, true),
     REGISTER(RegistrationPageController.class, true),
-    //MAIN_PAGE,
-    ;
+    MAIN_PAGE(MainPageController.class, true);
+
     private final Constructor<? extends SceneController> sceneConstr;
     private final SceneController controller;
 

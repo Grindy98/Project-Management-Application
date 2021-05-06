@@ -1,11 +1,13 @@
 package scene.controller.implementations;
 
+import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import persistent.user.User;
+import persistent.user.utils.Encryptor;
 import scene.MainApp;
 import scene.SceneType;
 import scene.controller.SceneController;
@@ -46,6 +48,23 @@ public class StartPageController extends SceneController {
 
     private void onLogin(){
 
-        System.out.println("Login");
+        ObservableMap<String, User> tempUsers = User.getUsers();
+
+        //check username
+        if(!tempUsers.containsKey(usernameTF.getText())){
+            userErrorText.setVisible(true);
+        } else{
+            String encPass = Encryptor.encodePassword(usernameTF.getText(), passwordTF.getText());
+
+            //check password
+          if(tempUsers.get(usernameTF.getText()).getPasswd().equals(encPass)){
+              MainApp.loggedIn = tempUsers.get(usernameTF.getText());
+              MainApp.changeToScene(SceneType.MAIN_PAGE);
+          }else{
+              passwordErrorText.setVisible(true);
+              userErrorText.setVisible(false);
+          }
+        }
+
     }
 }

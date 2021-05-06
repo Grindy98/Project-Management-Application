@@ -16,7 +16,7 @@ import java.util.List;
 public class MainApp extends Application{
     private static Stage stage;
     
-    private static User loggedIn;
+    public static User loggedIn;
 
     @Override
     public void start(Stage stage) throws IOException {
