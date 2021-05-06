@@ -1,11 +1,21 @@
 package scene.controller.implementations.popups;
 
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
+import javafx.geometry.Orientation;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.skin.TableHeaderRow;
+import javafx.scene.control.skin.TableViewSkin;
+import javafx.scene.control.skin.TableViewSkinBase;
+import javafx.scene.input.ScrollEvent;
 import javafx.stage.Stage;
 import persistent.Project;
 import persistent.exception.ProjectValidationFailedException;
@@ -14,7 +24,11 @@ import scene.MainApp;
 import scene.controller.SceneController;
 import scene.list.utils.MapBind;
 
+import javax.security.auth.callback.Callback;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Set;
 
 public class ProjectCreatePopup extends SceneController {
 
@@ -73,6 +87,10 @@ public class ProjectCreatePopup extends SceneController {
 
         FilteredList<UserView> flUser = new FilteredList<>(data, p -> true);//Pass the data to a filtered list
         table.setItems(flUser);//Set the table's items using the filtered list
+
+        table.getColumns().forEach(c ->{
+            c.setReorderable(false);
+        });
 
         combo.getItems().addAll("None", "Username", "Phone Number", "Address");
         combo.valueProperty().addListener((obs, oldValue, newValue) -> {

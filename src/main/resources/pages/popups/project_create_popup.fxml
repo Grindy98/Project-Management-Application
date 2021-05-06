@@ -63,10 +63,10 @@
                <children>
                     <TableView fx:id="table" prefHeight="230.0" prefWidth="400.0">
                         <columns>
-                            <TableColumn fx:id="usernameCol" maxWidth="250.0" minWidth="0.0" prefWidth="-1.0" text="Username" />
-                            <TableColumn fx:id="phoneNumCol" maxWidth="200.0" minWidth="0.0" prefWidth="-1.0" text="Phone Number" />
-                        <TableColumn fx:id="addressCol" maxWidth="350.0" minWidth="0.0" prefWidth="-1.0" text="Address" />
-                        <TableColumn fx:id="selectCol" maxWidth="80.0" minWidth="0.0" prefWidth="-1.0" text="Select" />
+                            <TableColumn fx:id="usernameCol" maxWidth="400.0" minWidth="100.0" prefWidth="-1.0" text="Username" />
+                            <TableColumn fx:id="phoneNumCol" maxWidth="300.0" minWidth="100.0" prefWidth="-1.0" text="Phone Number" />
+                        <TableColumn fx:id="addressCol" maxWidth="400.0" minWidth="80.0" prefWidth="-1.0" text="Address" />
+                        <TableColumn fx:id="selectCol" maxWidth="60.0" minWidth="40.0" prefWidth="40.0" text="Select" />
                         </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

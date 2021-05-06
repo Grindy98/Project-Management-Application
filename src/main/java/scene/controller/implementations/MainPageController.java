@@ -43,8 +43,7 @@ public class MainPageController extends SceneController {
 
         list = new FXMLList<>(listVBox);
 
-        ListBind.listBind(list, Project.getProjects(), (s) ->
-                new ProjectMainPageElement(s));
+        ListBind.listBind(list, Project.getProjects(), ProjectMainPageElement::new);
 
     }
     
