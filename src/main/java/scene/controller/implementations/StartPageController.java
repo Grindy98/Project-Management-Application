@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import persistent.user.User;
 import scene.MainApp;
 import scene.SceneType;
@@ -23,6 +24,10 @@ public class StartPageController extends SceneController {
     private Button registerButton;
     @FXML
     private Label errorMessageLabel;
+    @FXML
+    private Text userErrorText;
+    @FXML
+    private Text passwordErrorText;
 
     public StartPageController() {
         super("/pages/start_page.fxml", 600, 400);
@@ -34,6 +39,9 @@ public class StartPageController extends SceneController {
             MainApp.changeToScene(SceneType.REGISTER);
         });
         errorMessageLabel.setText("Debug");
+
+        userErrorText.setVisible(false);
+        passwordErrorText.setVisible(false);
     }
 
     private void onLogin(){
