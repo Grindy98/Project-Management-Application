@@ -5,6 +5,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import persistent.Project;
+import persistent.user.ProjectManager;
+import persistent.user.TeamMember;
 import scene.list.utils.ListBind;
 import scene.MainApp;
 import scene.controller.SceneController;
@@ -31,8 +33,7 @@ public class MainPageController extends SceneController {
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
-        // After having a way of getting the logged in user
-        if(false){
+        if(MainApp.getLoggedIn() instanceof TeamMember){
             createProjectButton.setManaged(false);
             createProjectButton.setVisible(false);
         }
@@ -43,8 +44,7 @@ public class MainPageController extends SceneController {
 
         list = new FXMLList<>(listVBox);
 
-        ListBind.listBind(list, Project.getProjects(), (s) ->
-                new ProjectMainPageElement(s));
+        ListBind.listBind(list, Project.getProjects(), ProjectMainPageElement::new);
 
     }
     

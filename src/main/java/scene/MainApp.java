@@ -16,11 +16,13 @@ import java.util.List;
 public class MainApp extends Application{
     private static Stage stage;
     
-    public static User loggedIn;
+    private static User loggedIn;
 
     @Override
     public void start(Stage stage) throws IOException {
-        this.stage = stage;
+        MainApp.stage = stage;
+
+        loggedIn = null;
 
         // Initialize parameters
         load();
@@ -47,6 +49,14 @@ public class MainApp extends Application{
         // Save to memory
         Project.save();
         User.save();
+    }
+
+    public static User getLoggedIn() {
+        return loggedIn;
+    }
+
+    public static void setLoggedIn(User loggedIn) {
+        MainApp.loggedIn = loggedIn;
     }
 
     public static Stage createPopup(){

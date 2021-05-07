@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import persistent.user.ProjectManager;
 import persistent.user.User;
 import persistent.user.utils.Encryptor;
 import scene.MainApp;
@@ -25,8 +26,6 @@ public class StartPageController extends SceneController {
     @FXML
     private Button registerButton;
     @FXML
-    private Label errorMessageLabel;
-    @FXML
     private Text userErrorText;
     @FXML
     private Text passwordErrorText;
@@ -40,7 +39,6 @@ public class StartPageController extends SceneController {
         registerButton.setOnAction(e -> {
             MainApp.changeToScene(SceneType.REGISTER);
         });
-        errorMessageLabel.setText("Debug");
 
         userErrorText.setVisible(false);
         passwordErrorText.setVisible(false);
@@ -57,7 +55,7 @@ public class StartPageController extends SceneController {
             User user = tempUsers.get(usernameTF.getText());
             //check password
           if(user.checkPassword(passwordTF.getText())){
-              MainApp.loggedIn = tempUsers.get(usernameTF.getText());
+              MainApp.setLoggedIn(tempUsers.get(usernameTF.getText()));
               MainApp.changeToScene(SceneType.MAIN_PAGE);
           }else{
               passwordErrorText.setVisible(true);
@@ -65,5 +63,18 @@ public class StartPageController extends SceneController {
           }
         }
 
+    }
+
+    @FXML
+    private void enterMainDebug(){
+        // make sure that there is the debug main user (project manager)
+        if(!User.getUsers().containsKey("debug")){
+            User.getUsers().put("debug", new ProjectManager("debug", "12345678",
+                    "abc", "07"));
+        }
+        usernameTF.setText("debug");
+        passwordTF.setText("12345678");
+
+        onLogin();
     }
 }
