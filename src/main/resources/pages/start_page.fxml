@@ -127,5 +127,6 @@
             <Region prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
+      <Button mnemonicParsing="false" onAction="#enterMainDebug" text="DEBUG: Enter main page" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
    </children>
 </AnchorPane>

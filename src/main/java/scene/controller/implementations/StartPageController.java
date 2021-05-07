@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import persistent.user.ProjectManager;
 import persistent.user.User;
 import persistent.user.utils.Encryptor;
 import scene.MainApp;
@@ -62,5 +63,18 @@ public class StartPageController extends SceneController {
           }
         }
 
+    }
+
+    @FXML
+    private void enterMainDebug(){
+        // make sure that there is the debug main user (project manager)
+        if(!User.getUsers().containsKey("debug")){
+            User.getUsers().put("debug", new ProjectManager("debug", "12345678",
+                    "abc", "07"));
+        }
+        usernameTF.setText("debug");
+        passwordTF.setText("12345678");
+
+        onLogin();
     }
 }

@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import persistent.Project;
+import persistent.user.TeamMember;
 import scene.MainApp;
 import scene.list.FXMLListElement;
 
@@ -38,7 +39,7 @@ public class ProjectMainPageElement extends FXMLListElement {
         noParticipantsLabel.setText(String.valueOf(project.getMemberUsernameList().size()));
 
         // After having a way of getting the logged in user
-        if(false){
+        if(MainApp.getLoggedIn() instanceof TeamMember){
             deleteBorderPane.setManaged(false);
             deleteBorderPane.setVisible(false);
         }
