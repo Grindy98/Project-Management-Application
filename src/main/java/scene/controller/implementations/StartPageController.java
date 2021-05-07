@@ -25,8 +25,6 @@ public class StartPageController extends SceneController {
     @FXML
     private Button registerButton;
     @FXML
-    private Label errorMessageLabel;
-    @FXML
     private Text userErrorText;
     @FXML
     private Text passwordErrorText;
@@ -40,7 +38,6 @@ public class StartPageController extends SceneController {
         registerButton.setOnAction(e -> {
             MainApp.changeToScene(SceneType.REGISTER);
         });
-        errorMessageLabel.setText("Debug");
 
         userErrorText.setVisible(false);
         passwordErrorText.setVisible(false);
@@ -58,7 +55,7 @@ public class StartPageController extends SceneController {
 
             //check password
           if(tempUsers.get(usernameTF.getText()).getPasswd().equals(encPass)){
-              MainApp.loggedIn = tempUsers.get(usernameTF.getText());
+              MainApp.setLoggedIn(tempUsers.get(usernameTF.getText()));
               MainApp.changeToScene(SceneType.MAIN_PAGE);
           }else{
               passwordErrorText.setVisible(true);

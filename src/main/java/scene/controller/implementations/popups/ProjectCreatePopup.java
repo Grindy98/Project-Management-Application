@@ -19,9 +19,12 @@ import javafx.scene.input.ScrollEvent;
 import javafx.stage.Stage;
 import persistent.Project;
 import persistent.exception.ProjectValidationFailedException;
+import persistent.user.ProjectManager;
+import persistent.user.TeamMember;
 import persistent.user.User;
 import scene.MainApp;
 import scene.controller.SceneController;
+import scene.list.utils.ListBind;
 import scene.list.utils.MapBind;
 
 import javax.security.auth.callback.Callback;
@@ -29,6 +32,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.function.Predicate;
 
 public class ProjectCreatePopup extends SceneController {
 
@@ -85,8 +89,10 @@ public class ProjectCreatePopup extends SceneController {
         selectCol.setCellValueFactory(
                 new PropertyValueFactory<>("select"));
 
-        FilteredList<UserView> flUser = new FilteredList<>(data, p -> true);//Pass the data to a filtered list
-        table.setItems(flUser);//Set the table's items using the filtered list
+        Predicate<UserView> basePred = p -> User.getUsers().get(p.getUsername()) instanceof TeamMember;
+
+        FilteredList<UserView> flUserView = new FilteredList<>(data, basePred);//Pass the data to a filtered list
+        table.setItems(flUserView);//Set the table's items using the filtered list
 
         table.getColumns().forEach(c ->{
             c.setReorderable(false);
@@ -94,11 +100,7 @@ public class ProjectCreatePopup extends SceneController {
 
         combo.getItems().addAll("None", "Username", "Phone Number", "Address");
         combo.valueProperty().addListener((obs, oldValue, newValue) -> {
-            if(newValue.equals( "None")){
-                textField.setDisable(true);
-            }else{
-                textField.setDisable(false);
-            }
+            textField.setDisable(newValue.equals("None"));
         });
 
         combo.setValue("None");
@@ -107,16 +109,19 @@ public class ProjectCreatePopup extends SceneController {
             switch (combo.getValue())//Switch on choiceBox value
             {
                 case "None":
-                    flUser.setPredicate(p -> true);
+                    flUserView.setPredicate(basePred);
                     break;
                 case "Phone Number":
-                    flUser.setPredicate(p -> p.getPhoneNumber().toLowerCase().contains(newValue.toLowerCase().trim()));//filter table by first name
+                    flUserView.setPredicate(basePred.and(
+                            p -> p.getPhoneNumber().toLowerCase().contains(newValue.toLowerCase().trim())));
                     break;
                 case "Username":
-                    flUser.setPredicate(p -> p.getUsername().toLowerCase().contains(newValue.toLowerCase().trim()));//filter table by first name
+                    flUserView.setPredicate(basePred.and(
+                            p -> p.getUsername().toLowerCase().contains(newValue.toLowerCase().trim())));
                     break;
                 case "Address":
-                    flUser.setPredicate(p -> p.getAddress().toLowerCase().contains(newValue.toLowerCase().trim()));//filter table by last name
+                    flUserView.setPredicate(basePred.and(
+                            p -> p.getAddress().toLowerCase().contains(newValue.toLowerCase().trim())));
                     break;
             }
         });
@@ -148,17 +153,31 @@ public class ProjectCreatePopup extends SceneController {
             }
         });
         usernames.sort(String::compareTo);
-        // To be implemented fully when user is implemented
+        // Check if all usernames selected exist and are team members
+        usernames.forEach(u -> {
+            User user = User.getUsers().get(u);
+            if(user == null){
+                throw new RuntimeException("Tried to add user that doesn't exist");
+            }
+            if(user instanceof ProjectManager){
+                throw new RuntimeException("Tried to add project manager");
+            }
+        });
+
         Project newProj = null;
         try {
-            newProj = new Project(usernames, "this_username",
+            newProj = new Project(usernames, MainApp.getLoggedIn().getUsername(),
                     nameTextField.getText(), descTextArea.getText());
         } catch (ProjectValidationFailedException e) {
             // If invalid input present an alert box to the user
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid input alert");
             alert.setHeaderText("Invalid input!");
-            alert.setContentText(e.getMessage());
+            StringBuilder errors = new StringBuilder();
+            for (ProjectValidationFailedException.Type s : e.getErrors()) {
+                errors.append(s.getError()).append("\n");
+            }
+            alert.setContentText(errors.toString());
 
             alert.showAndWait();
             // After alert was closed, close and reload popup

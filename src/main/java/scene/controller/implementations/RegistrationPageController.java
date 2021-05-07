@@ -76,7 +76,7 @@ public class RegistrationPageController extends SceneController {
         boolean proceed = true;
 
         //password validation
-        if(passwordTF.getText().length() <= 8) {
+        if(passwordTF.getText().length() < 8) {
             passErrorLabel.setVisible(true);
             proceed = false;
         } else{

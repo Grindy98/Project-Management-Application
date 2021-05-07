@@ -96,19 +96,21 @@ public class Project {
 
     private void validate() throws ProjectValidationFailedException {
         //validate user list + owner
-        if(name.length() > 40 || name.length() < 1){
-            throw new ProjectValidationFailedException(
-                    "Name must be between 1 and 40 characters");
+        ProjectValidationFailedException exc = new ProjectValidationFailedException();
+        if(name.length() > 50 || name.length() < 1){
+            exc.addError(ProjectValidationFailedException.Type.NAME_LENGTH);
         }
-
-        if(name.matches("[^\\w\\s]")){
-            throw new ProjectValidationFailedException(
-                    "Invalid name character");
+        if(name.matches("[^[A-Za-z0-9]\\s]")){
+            exc.addError(ProjectValidationFailedException.Type.NAME_CONTENT);
         }
-
         if(description.length() > 1000){
-            throw new ProjectValidationFailedException(
-                    "Description must be smaller than 1000 characters");
+            exc.addError(ProjectValidationFailedException.Type.DESCRIPTION_LENGTH);
+        }
+        if(memberUsernameList.size() == 0){
+            exc.addError(ProjectValidationFailedException.Type.MEMBERS_EMPTY);
+        }
+        if(!exc.getErrors().isEmpty()){
+            throw exc;
         }
     }
 

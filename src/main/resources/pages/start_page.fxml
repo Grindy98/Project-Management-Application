@@ -120,11 +120,7 @@
             <HBox layoutX="10.0" layoutY="332.0">
                <children>
                   <Region prefWidth="1000.0" HBox.hgrow="ALWAYS" />
-                  <AnchorPane minWidth="300.0" HBox.hgrow="NEVER">
-                     <children>
-                        <Label fx:id="errorMessageLabel" alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
+                  <AnchorPane minWidth="300.0" HBox.hgrow="NEVER" />
                   <Region prefWidth="1000.0" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
