@@ -73,72 +73,56 @@ public class RegistrationPageController extends SceneController {
 
     private void registerPressed() {
 
+        //role validation
+        if(roleSelector.getValue().equals("Select role...")){
+            selectorErrorLabel.setVisible(true);
+            return;
+        }else{
+            selectorErrorLabel.setVisible(false);
+        }
+
         boolean proceed = true;
+        User user;
+
+        if(roleSelector.getValue().equals("Team member"))
+            user = new TeamMember(usernameTF.getText(), passwordTF.getText(), addressTF.getText(), phoneTF.getText());
+        else
+            user = new ProjectManager(usernameTF.getText(), passwordTF.getText(), addressTF.getText(), phoneTF.getText());
 
         //password validation
-        if(passwordTF.getText().length() < 8) {
+        if(!user.validatePassword(passwordTF.getText())) {
             passErrorLabel.setVisible(true);
             proceed = false;
         } else{
             passErrorLabel.setVisible(false);
         }
         //address validation
-        boolean addrIsValid = addressTF.getText().matches("[0-9]+");
-        if(addrIsValid || addressTF.getText().length() > 100) {
+        if(!user.validateAddress()) {
             addressErrorLabel.setVisible(true);
             proceed = false;
         } else{
             addressErrorLabel.setVisible(false);
         }
         //phone validation
-        boolean phoneIsValid = phoneTF.getText().matches("[0-9]+");
-        if(!phoneIsValid) {
+        if(!user.validatePhone()) {
             phoneErrorLabel.setVisible(true);
             proceed = false;
         } else{
             phoneErrorLabel.setVisible(false);
         }
-        //role validation
-        if(roleSelector.getValue().equals("Select role...")){
-            selectorErrorLabel.setVisible(true);
-            proceed = false;
-        }else{
-            selectorErrorLabel.setVisible(false);
-        }
+
 
         //return if flag is set to false
         if(!proceed)
             return;
 
-        String encPass = Encryptor.encodePassword(usernameTF.getText(), passwordTF.getText());
-
-        //create user and validate its username before adding it to array
-        if(roleSelector.getValue().equals("Team member")){
-            User newUser = new TeamMember(usernameTF.getText(), encPass, addressTF.getText(), phoneTF.getText());
-
-            for(User user : User.getUsers().values()){
-                if(newUser.equals(user)){
-                    userErrorLabel.setVisible(true);
-                    return;
-                }
-            }
-
-            User.getUsers().put(newUser.getUsername(), newUser);
-            userErrorLabel.setVisible(false);
+        //username validation
+        if(!user.validateUsername()){
+            userErrorLabel.setVisible(true);
         }else{
-            User newUser = new ProjectManager(usernameTF.getText(), encPass, addressTF.getText(), phoneTF.getText());
-
-            for(User user : User.getUsers().values()){
-                if(newUser.equals(user)){
-                    userErrorLabel.setVisible(true);
-                    return;
-                }
-            }
-
-            User.getUsers().put(newUser.getUsername(), newUser);
+            User.getUsers().put(user.getUsername(), user);
             userErrorLabel.setVisible(false);
+            System.out.println("Registration successfull");
         }
-
-        System.out.println("Registration successfull");
     }
 }

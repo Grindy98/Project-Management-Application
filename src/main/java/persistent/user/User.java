@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
 import persistent.service.FileSystemHandler;
+import persistent.user.utils.Encryptor;
 import scene.MainApp;
 import scene.list.utils.MapBind;
 
@@ -48,7 +49,7 @@ public abstract class User {
 
     public User(String username, String passwd, String address, String phone) {
         this.username = username;
-        this.passwd = passwd;
+        this.passwd = Encryptor.encodePassword(username, passwd);
         this.address = address;
         this.phone = phone;
 
@@ -117,5 +118,31 @@ public abstract class User {
 
     public String getPhone() {
         return phone;
+    }
+
+    //returns true if username is not found in json
+    public boolean validateUsername(){
+        return !users.containsKey(username);
+    }
+
+    public boolean validatePassword(String password){
+        return (password.length() >= 8);
+    }
+
+    public boolean validateAddress(){
+        if(address.matches("[0-9]+") || address.length() > 100)
+            return false;
+        return true;
+    }
+
+    public boolean validatePhone(){
+        return phone.matches("[0-9]+");
+    }
+
+    //returns true if given password matches this user's password
+    public boolean checkPassword(String password){
+        String encPass = Encryptor.encodePassword(username, password);
+
+        return (encPass.equals(passwd));
     }
 }
