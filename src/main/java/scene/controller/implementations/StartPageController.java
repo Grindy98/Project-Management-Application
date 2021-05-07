@@ -54,10 +54,9 @@ public class StartPageController extends SceneController {
         if(!tempUsers.containsKey(usernameTF.getText())){
             userErrorText.setVisible(true);
         } else{
-            String encPass = Encryptor.encodePassword(usernameTF.getText(), passwordTF.getText());
-
+            User user = tempUsers.get(usernameTF.getText());
             //check password
-          if(tempUsers.get(usernameTF.getText()).getPasswd().equals(encPass)){
+          if(user.checkPassword(passwordTF.getText())){
               MainApp.loggedIn = tempUsers.get(usernameTF.getText());
               MainApp.changeToScene(SceneType.MAIN_PAGE);
           }else{
