@@ -1,5 +1,8 @@
 package scene.controller.implementations;
 
+import javafx.beans.InvalidationListener;
+import javafx.collections.ListChangeListener;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
@@ -16,6 +19,8 @@ import scene.controller.SceneController;
 import scene.controller.implementations.popups.ProjectCreatePopup;
 import scene.list.FXMLList;
 import scene.list.elements.ProjectMainPageElement;
+
+import java.util.function.Predicate;
 
 public class MainPageController extends SceneController {
 
@@ -73,9 +78,25 @@ public class MainPageController extends SceneController {
             new ProjectCreatePopup();
         });
 
+        // Filter projects based on who is logged in
+        Predicate<Project> pred;
+        String loggedInUsername = MainApp.getLoggedIn().getUsername();
+        if(MainApp.getLoggedIn() instanceof TeamMember){
+            // Only see projects you are part of
+            pred = p -> p.getMemberUsernameList().contains(loggedInUsername);
+        }else{
+            // Only see projects you own
+            pred = p -> p.getOwnerUsername().equals(loggedInUsername);
+        }
+        // Create intermediary filtered list
+        FilteredList<Project> projFiltered = new FilteredList<>(Project.getProjects(), pred);
+        // Doesn't work without this
+        Project.getProjects().addListener((ListChangeListener<Project>) change ->{
+            projFiltered.equals("");
+        });
         list = new FXMLList<>(listVBox);
 
-        ListBind.listBind(list, Project.getProjects(), ProjectMainPageElement::new);
+        ListBind.listBind(list, projFiltered, ProjectMainPageElement::new);
 
         usernameLabel.setText(MainApp.getLoggedIn().getUsername());
 
