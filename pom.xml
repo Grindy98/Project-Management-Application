@@ -4,6 +4,7 @@
     <groupId>com.project_management_app</groupId>
     <artifactId>Project-Management-Application</artifactId>
     <version>1.00</version>
+    <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>14</maven.compiler.source>
@@ -50,9 +51,9 @@
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.5</version>
+                <version>0.0.6</version>
                 <configuration>
-                    <mainClass>scene.MainApp</mainClass>
+                    <mainClass>scene.EntryPoint</mainClass>
                 </configuration>
             </plugin>
             <plugin>
@@ -62,6 +63,25 @@
                 <configuration>
                     <useFile>false</useFile>
                 </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>scene.EntryPoint</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
