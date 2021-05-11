@@ -11,24 +11,24 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scene.controller.implementations.ProjectPageController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane layoutX="-1.0" layoutY="-2.0" prefHeight="400.0" prefWidth="600.0">
          <center>
-            <TextArea prefHeight="200.0" prefWidth="200.0" text="Description here" BorderPane.alignment="CENTER" />
+            <TextArea fx:id="descriptionArea" editable="false" prefHeight="200.0" prefWidth="200.0" text="Description here" BorderPane.alignment="CENTER" />
          </center>
          <top>
             <HBox prefHeight="100.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                <children>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Button layoutX="21.0" layoutY="30.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="79.0" text="Back" />
+                        <Button fx:id="backButton" layoutX="21.0" layoutY="30.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="79.0" text="Back" />
                      </children>
                   </AnchorPane>
                   <Region prefHeight="200.0" prefWidth="200.0" />
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="12.0" layoutY="37.0" text="Project Name">
+                        <Label fx:id="projectNameLabel" layoutX="12.0" layoutY="37.0" text="Project Name">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -38,8 +38,8 @@
                   <Region prefHeight="200.0" prefWidth="200.0" />
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Button layoutX="3.0" layoutY="9.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="108.0" text="Manage Team" />
-                        <Button layoutX="5.0" layoutY="54.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="104.0" text="Delete Project" />
+                        <Button fx:id="manageTeamButton" layoutX="3.0" layoutY="9.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="108.0" text="Manage Team" />
+                        <Button fx:id="deleteProjectButton" layoutX="5.0" layoutY="54.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="104.0" text="Delete Project" />
                      </children>
                   </AnchorPane>
                </children>

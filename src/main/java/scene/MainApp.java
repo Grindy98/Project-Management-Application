@@ -29,7 +29,7 @@ public class MainApp extends Application{
         loggedIn = null;
 
         // Initial scene
-        changeToScene(SceneType.START);
+        changeToScene(SceneType.PROJECT_PAGE);
         stage.show();
     }
 

@@ -2,6 +2,7 @@ package scene;
 
 import scene.controller.SceneController;
 import scene.controller.implementations.MainPageController;
+import scene.controller.implementations.ProjectPageController;
 import scene.controller.implementations.RegistrationPageController;
 import scene.controller.implementations.StartPageController;
 
@@ -12,6 +13,7 @@ public enum SceneType{
     START(StartPageController.class, false),
     REGISTER(RegistrationPageController.class, true),
     MAIN_PAGE(MainPageController.class, true),
+    PROJECT_PAGE(ProjectPageController.class, true)
     ;
     private final Constructor<? extends SceneController> sceneConstr;
     private final SceneController controller;
