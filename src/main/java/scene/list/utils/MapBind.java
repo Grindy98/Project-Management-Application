@@ -1,12 +1,11 @@
 package scene.list.utils;
 
-import javafx.collections.ListChangeListener;
-import javafx.collections.MapChangeListener;
-import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
+import javafx.collections.*;
+import javafx.collections.transformation.FilteredList;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public interface MapBind<T, V> {
@@ -28,5 +27,14 @@ public interface MapBind<T, V> {
             }
         };
         source.addListener(listener);
+    }
+
+    static <T, K, V> FilteredList<T> mapBindToFiltered(
+            ObservableMap<K, V> source,
+            MapBind<T, V> binder,
+            Predicate<T> pred) {
+        ObservableList<T> targetObs = FXCollections.observableArrayList();
+        MapBind.mapBind(targetObs, source, binder);
+        return new FilteredList<T>(targetObs, pred);
     }
 }

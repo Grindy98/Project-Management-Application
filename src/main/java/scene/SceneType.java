@@ -15,7 +15,7 @@ public enum SceneType{
     ;
     private final Constructor<? extends SceneController> sceneConstr;
     private final SceneController controller;
-
+    @SuppressWarnings("unchecked")
     SceneType(Class<? extends SceneController> scene, boolean reload){
         this.sceneConstr= (Constructor<? extends SceneController>) scene.getConstructors()[0];
         // If controller is null, then we reload it each time
