@@ -19,19 +19,6 @@ class UserSaveTest {
     private static final String emptyLocation = "/save_models/empty_save.json";
     private static final String testSave = "/user/test_save.json";
 
-
-    private void printToCons(File f){
-        BufferedReader br = null;
-        try {
-            br = new BufferedReader(new FileReader(f));
-            String line;
-            while ((line = br.readLine()) != null) {
-                System.out.println(line);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
     private void copyToSaveFile(String from){
         // Copy file from path
         try {
@@ -39,12 +26,8 @@ class UserSaveTest {
             if(emptyURL == null){
                 throw new IllegalArgumentException("Empty file not found!");
             }
-            System.out.println("before");
-            printToCons(FileSystemHandler.FileType.USER.getSavePath().toFile());
             FileUtils.copyFile(new File(emptyURL.toURI()),
                     FileSystemHandler.FileType.USER.getSavePath().toFile());
-            System.out.println("after");
-            printToCons(FileSystemHandler.FileType.USER.getSavePath().toFile());
         } catch (IOException | URISyntaxException e) {
             throw new RuntimeException(e);
         }
