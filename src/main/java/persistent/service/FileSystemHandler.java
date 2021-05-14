@@ -14,9 +14,9 @@ public class FileSystemHandler {
 
     public enum FileType{
         PROJECT("/save_models/empty_save.json",
-            "project"),
+            "project.json"),
         USER("/save_models/empty_save.json",
-            "users"),
+            "users.json"),
         ;
 
         private Path savePath;
