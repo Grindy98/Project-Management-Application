@@ -102,6 +102,8 @@ public class Task {
             this.day = day;
         }
 
+        private SimpleDate(){}
+
         @Override
         public String toString(){
             return day + "-" + month + "-" + year;
