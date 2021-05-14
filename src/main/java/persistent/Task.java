@@ -75,6 +75,22 @@ public class Task {
 
     public static ObservableList<Task> getTasks(){return tasks;}
 
+    public String getDescription() {
+        return description;
+    }
+
+    public List<String> getMemberUsernameList() {
+        return memberUsernameList;
+    }
+
+    public SimpleDate getDeadline() {
+        return deadline;
+    }
+
+    public String getReview() {
+        return review;
+    }
+
     public static class SimpleDate{
         int year;
         int month;
