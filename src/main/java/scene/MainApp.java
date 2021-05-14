@@ -7,11 +7,15 @@ import javafx.collections.ObservableMap;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import persistent.Project;
+import persistent.Task;
 import persistent.exception.ProjectValidationFailedException;
 import persistent.user.User;
 import scene.controller.SceneController;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class MainApp extends Application{
@@ -29,6 +33,15 @@ public class MainApp extends Application{
         load();
         loggedIn = null;
 
+        List<String> ulist = new ArrayList<String>();
+        Task.SimpleDate date = new Task.SimpleDate(15, 4, 2021);
+        System.out.println(date);
+        String desc = "ajdskalda";
+        ulist.add("user1");
+        Task test = new Task(ulist, date, desc);
+        ObservableList<Task> ls = Task.getTasks();
+        ls.add(test);
+
         // Initial scene
         changeToScene(SceneType.START);
         stage.show();
@@ -44,12 +57,14 @@ public class MainApp extends Application{
         // Load from memory
         Project.load();
         User.load();
+        Task.load();
     }
 
     public static void save(){
         // Save to memory
         Project.save();
         User.save();
+        Task.save();
     }
 
     public static User getLoggedIn() {

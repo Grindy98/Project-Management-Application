@@ -17,6 +17,7 @@ public class FileSystemHandler {
             "project"),
         USER("/save_models/empty_save.json",
             "users"),
+        TASK("/save_models/empty_save.json", "tasks");
         ;
 
         private Path savePath;
