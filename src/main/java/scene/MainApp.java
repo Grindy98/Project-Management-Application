@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import persistent.Project;
 import persistent.exception.ProjectValidationFailedException;
 import persistent.user.User;
+import scene.controller.SceneController;
 
 import java.io.IOException;
 import java.util.List;
@@ -29,7 +30,7 @@ public class MainApp extends Application{
         loggedIn = null;
 
         // Initial scene
-        changeToScene(SceneType.PROJECT_PAGE);
+        changeToScene(SceneType.START);
         stage.show();
     }
 
@@ -79,8 +80,10 @@ public class MainApp extends Application{
         });
     }
 
-    public static void changeToScene(SceneType scene){
-        stage.setScene(scene.getSceneController().getScene());
+    public static SceneController changeToScene(SceneType scene){
+        SceneController controller = scene.getSceneController();
+        stage.setScene(controller.getScene());
+        return controller;
     }
 
     public static void main(String[] args) {
