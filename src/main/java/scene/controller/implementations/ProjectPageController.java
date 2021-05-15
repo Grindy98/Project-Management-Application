@@ -23,17 +23,24 @@ public class ProjectPageController extends SceneController {
     private Label projectNameLabel;
     @FXML
     private TextArea descriptionArea;
+    @FXML
+    private Button createTaskButton;
 
     public ProjectPageController(){
-        super("/pages/project_page.fxml", 600, 600);
+        super("/pages/project_page.fxml", 600, 400);
 
         manageTeamButton.setOnAction(e -> manageTeamButtonPressed());
         backButton.setOnAction(e -> backButtonPressed());
+        createTaskButton.setOnAction(e -> createTaskButtonPressed());
 
     }
 
     private void backButtonPressed(){
         MainApp.changeToScene(SceneType.MAIN_PAGE);
+    }
+
+    private void createTaskButtonPressed(){
+        System.out.println("create task pressed");
     }
 
     private void manageTeamButtonPressed(){
