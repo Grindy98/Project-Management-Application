@@ -33,14 +33,6 @@ public class MainApp extends Application{
         load();
         loggedIn = null;
 
-        Task.SimpleDate date = new Task.SimpleDate(15, 4, 2021);
-        System.out.println(date);
-        String desc = "ajdskalda";
-
-        Task test = new Task("abcd", date, desc, "proj1");
-        ObservableList<Task> ls = Task.getTasks();
-        ls.add(test);
-
         // Initial scene
         changeToScene(SceneType.START);
         stage.show();

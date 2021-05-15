@@ -94,6 +94,8 @@ public class Task {
         return review;
     }
 
+    public String getProjectName(){return projectName;}
+
     public static class SimpleDate{
         int year;
         int month;

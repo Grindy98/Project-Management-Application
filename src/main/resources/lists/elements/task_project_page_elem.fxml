@@ -6,23 +6,22 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-
-<AnchorPane prefHeight="59.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lists.elements.TaskProjectPageElem">
+<AnchorPane prefHeight="66.0" prefWidth="390.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox prefHeight="66.0" prefWidth="600.0">
          <children>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <AnchorPane prefHeight="66.0" prefWidth="253.0">
                <children>
-                  <Label fx:id="descriptionLabel" layoutX="9.0" layoutY="14.0" prefHeight="30.0" prefWidth="217.0" text="Label" />
+                  <Label fx:id="descriptionLabel" layoutX="9.0" layoutY="14.0" prefHeight="30.0" prefWidth="113.0" text="Label" />
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <AnchorPane prefHeight="66.0" prefWidth="131.0">
                <children>
-                  <Label layoutX="14.0" layoutY="24.0" text="Deadline:" />
-                  <Label fx:id="deadlineLabel" layoutX="78.0" layoutY="24.0" text="Label" />
+                  <Label layoutY="24.0" text="Deadline:" />
+                  <Label fx:id="deadlineLabel" layoutX="64.0" layoutY="24.0" text="Label" />
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <AnchorPane prefHeight="66.0" prefWidth="271.0">
                <children>
                   <CheckBox fx:id="completedCheckBox" layoutY="24.0" mnemonicParsing="false" text="Completed" />
                   <Button fx:id="manageMembersButton" layoutX="90.0" layoutY="7.0" mnemonicParsing="false" text="Manage Members" />

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0" prefWidth="572.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane layoutX="-1.0" layoutY="-2.0" prefHeight="400.0" prefWidth="600.0">
          <top>
@@ -32,7 +32,7 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <Region prefHeight="200.0" prefWidth="200.0" />
+                  <Region prefHeight="100.0" prefWidth="164.0" />
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
                         <Button fx:id="manageTeamButton" layoutX="3.0" layoutY="9.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="108.0" text="Manage Team" />
@@ -43,32 +43,28 @@
             </HBox>
          </top>
          <center>
-            <TextArea fx:id="descriptionArea" editable="false" prefHeight="300.0" prefWidth="319.0" text="Description here" BorderPane.alignment="CENTER" />
+            <TextArea fx:id="descriptionArea" editable="false" prefHeight="138.0" prefWidth="600.0" text="Description here" BorderPane.alignment="CENTER" />
          </center>
-         <right>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <bottom>
+            <VBox prefHeight="138.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                <children>
-                  <VBox prefHeight="298.0" prefWidth="197.0">
-                     <children>
-                        <ScrollPane hbarPolicy="NEVER" prefHeight="300.0" prefWidth="279.0" vbarPolicy="ALWAYS">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="302.0" prefWidth="200.0">
-                                 <children>
-                                    <VBox layoutX="-1.0" prefHeight="298.0" prefWidth="196.0" />
-                                 </children>
-                              </AnchorPane>
-                          </content>
-                        </ScrollPane>
-                        <AnchorPane prefHeight="87.0" prefWidth="198.0">
+                  <ScrollPane fx:id="scrollPane" hbarPolicy="ALWAYS" hmax="2.0" prefHeight="168.0" prefWidth="600.0" vbarPolicy="ALWAYS">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="302.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="createTaskButton" layoutX="60.0" layoutY="9.0" mnemonicParsing="false" text="Create Task" />
+                              <VBox fx:id="listVBox" layoutX="-1.0" layoutY="56.0" prefHeight="242.0" prefWidth="415.0" />
                            </children>
                         </AnchorPane>
+                    </content>
+                  </ScrollPane>
+                  <AnchorPane prefHeight="66.0" prefWidth="456.0">
+                     <children>
+                        <Button fx:id="createTaskButton" layoutX="261.0" layoutY="1.0" mnemonicParsing="false" text="Create Task" />
                      </children>
-                  </VBox>
+                  </AnchorPane>
                </children>
-            </AnchorPane>
-         </right>
+            </VBox>
+         </bottom>
       </BorderPane>
    </children>
 </AnchorPane>

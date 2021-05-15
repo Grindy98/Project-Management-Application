@@ -18,6 +18,8 @@ public class TaskCreatePopup extends SceneController{
 
     private Stage popup;
 
+    private String projectName;
+
     @FXML
     private DatePicker ddlDatePicker;
     @FXML
@@ -60,15 +62,22 @@ public class TaskCreatePopup extends SceneController{
         }
     }
 
+    public void setProjectName(String projectName){
+        this.projectName = projectName;
+    }
+
     private void cancelButtonPressed(){
         popup.close();
     }
 
     private void finishButtonPressed(){
-        validate();
+        if(validate()) {
+            addTask();
+            popup.close();
+        }
     }
 
-    private void validate()
+    private boolean validate()
     {
         boolean dateFlag = true, descriptionFlag = true, selectorFlag = true;
 
@@ -101,14 +110,17 @@ public class TaskCreatePopup extends SceneController{
             alert.setContentText(errors);
 
             alert.showAndWait();
-        }
 
+            return false;
+        }
+        return true;
     }
 
     private void addTask(){
-        ObservableList<Task> taskList = Task.getTasks();
         Task.SimpleDate date = new Task.SimpleDate(ddlDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        //Task newTask = new Task(choiceBox.getValue(), date, descTextArea.getText(), )
+        Task newTask = new Task(choiceBox.getValue(), date, descTextArea.getText(), projectName);
+
+        Task.getTasks().add(newTask);
     }
 
 }
