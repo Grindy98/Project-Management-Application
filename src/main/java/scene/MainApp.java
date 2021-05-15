@@ -37,7 +37,7 @@ public class MainApp extends Application{
         System.out.println(date);
         String desc = "ajdskalda";
 
-        Task test = new Task("abcd", date, desc);
+        Task test = new Task("abcd", date, desc, "proj1");
         ObservableList<Task> ls = Task.getTasks();
         ls.add(test);
 

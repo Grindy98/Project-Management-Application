@@ -30,11 +30,13 @@ public class Task {
     private SimpleDate deadline;
     private String review;
     private String description;
+    private String projectName;
 
-    public Task(String assigneeUsername, SimpleDate deadline, String description){
+    public Task(String assigneeUsername, SimpleDate deadline, String description, String projectName){
         this.assigneeUsername = assigneeUsername;
         this.deadline = deadline;
         this.description = description;
+        this.projectName = projectName;
 
         review = "No review added.";
     }
@@ -70,6 +72,7 @@ public class Task {
                 ", deadline='" + deadline + '\'' +
                 ", review='" + review + '\'' +
                 ", description='" + description + '\'' +
+                ", projectName='" + projectName + '\'' +
                 '}';
     }
 
@@ -102,11 +105,18 @@ public class Task {
             this.day = day;
         }
 
+        public SimpleDate(String date){
+            String[] dateElements = date.split("/");
+            day = Integer.parseInt(dateElements[0]);
+            month = Integer.parseInt(dateElements[1]);
+            year = Integer.parseInt(dateElements[2]);
+        }
+
         private SimpleDate(){}
 
         @Override
         public String toString(){
-            return day + "-" + month + "-" + year;
+            return day + "/" + month + "/" + year;
         }
     }
 }
