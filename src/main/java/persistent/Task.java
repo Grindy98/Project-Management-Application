@@ -31,12 +31,14 @@ public class Task {
     private String review;
     private String description;
     private String projectName;
+    private Boolean isCompleted;
 
-    public Task(String assigneeUsername, SimpleDate deadline, String description, String projectName){
+    public Task(String assigneeUsername, SimpleDate deadline, String description, String projectName, Boolean isCompleted){
         this.assigneeUsername = assigneeUsername;
         this.deadline = deadline;
         this.description = description;
         this.projectName = projectName;
+        this.isCompleted = isCompleted;
 
         review = "No review added.";
     }
@@ -73,6 +75,7 @@ public class Task {
                 ", review='" + review + '\'' +
                 ", description='" + description + '\'' +
                 ", projectName='" + projectName + '\'' +
+                ", isCompleted='" + isCompleted + '\'' +
                 '}';
     }
 
@@ -95,6 +98,18 @@ public class Task {
     }
 
     public String getProjectName(){return projectName;}
+
+    public Boolean getIsCompleted(){return isCompleted;}
+
+    public void setDescription(String description){this.description = description;}
+
+    public void setDeadline(SimpleDate deadline) {
+        this.deadline = deadline;
+    }
+
+    public void setAssigneeUsername(String assigneeUsername){this.assigneeUsername = assigneeUsername;}
+
+    public void setIsCompleted(Boolean isCompleted){this.isCompleted = isCompleted;}
 
     public static class SimpleDate{
         int year;

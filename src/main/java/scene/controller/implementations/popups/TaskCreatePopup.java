@@ -118,7 +118,7 @@ public class TaskCreatePopup extends SceneController{
 
     private void addTask(){
         Task.SimpleDate date = new Task.SimpleDate(ddlDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        Task newTask = new Task(choiceBox.getValue(), date, descTextArea.getText(), projectName);
+        Task newTask = new Task(choiceBox.getValue(), date, descTextArea.getText(), projectName, false);
 
         Task.getTasks().add(newTask);
     }

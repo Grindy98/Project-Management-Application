@@ -8,23 +8,23 @@
 
 <AnchorPane prefHeight="66.0" prefWidth="390.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox prefHeight="66.0" prefWidth="600.0">
+      <HBox prefHeight="66.0" prefWidth="570.0">
          <children>
-            <AnchorPane prefHeight="66.0" prefWidth="253.0">
+            <AnchorPane prefHeight="66.0" prefWidth="179.0">
                <children>
-                  <Label fx:id="descriptionLabel" layoutX="9.0" layoutY="14.0" prefHeight="30.0" prefWidth="113.0" text="Label" />
+                  <Label fx:id="descriptionLabel" alignment="CENTER" prefHeight="66.0" prefWidth="168.0" text="Label" wrapText="true" />
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="66.0" prefWidth="131.0">
+            <AnchorPane prefHeight="66.0" prefWidth="174.0">
                <children>
-                  <Label layoutY="24.0" text="Deadline:" />
-                  <Label fx:id="deadlineLabel" layoutX="64.0" layoutY="24.0" text="Label" />
+                  <Label layoutY="25.0" text="Deadline:" />
+                  <Label fx:id="deadlineLabel" layoutX="67.0" layoutY="25.0" text="Label" />
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="66.0" prefWidth="271.0">
+            <AnchorPane prefHeight="66.0" prefWidth="255.0">
                <children>
-                  <CheckBox fx:id="completedCheckBox" layoutY="24.0" mnemonicParsing="false" text="Completed" />
-                  <Button fx:id="manageMembersButton" layoutX="90.0" layoutY="7.0" mnemonicParsing="false" text="Manage Members" />
+                  <CheckBox fx:id="completedCheckBox" layoutY="25.0" mnemonicParsing="false" text="Completed" />
+                  <Button fx:id="editTaskButton" layoutX="116.0" layoutY="8.0" mnemonicParsing="false" text="Edit Task" />
                   <Button fx:id="addReviewButton" layoutX="108.0" layoutY="33.0" mnemonicParsing="false" text="Add Review" />
                   <Button fx:id="seeReviewButton" layoutX="109.0" layoutY="20.0" mnemonicParsing="false" text="See Review" />
                </children>

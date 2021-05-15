@@ -73,7 +73,6 @@ public class ProjectPageController extends SceneController {
             pred = p -> (p.getAssigneeUsername().equals(loggedInUsername) && p.getProjectName().equals(projectNameLabel.getText()));
         }else{
             // See project tasks
-            System.out.println("p. is " +  projectNameLabel.getText());
             pred = p -> p.getProjectName().equals(projectNameLabel.getText());
         }
         // Create intermediary filtered list
