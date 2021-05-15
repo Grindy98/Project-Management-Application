@@ -5,6 +5,7 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import persistent.Project;
 import persistent.exception.ProjectValidationFailedException;
@@ -29,33 +30,27 @@ public class MainPageController extends SceneController {
 
     @FXML
     private Label usernameLabel;
-
     @FXML
     private PasswordField oldPasswordPF;
-
     @FXML
     private PasswordField newPasswordPF;
-
     @FXML
     private Button passwordButton;
-
     @FXML
     private Button addressButton;
-
     @FXML
     private Button phoneButton;
-
     @FXML
     private TextField addressTF;
-
     @FXML
     private TextField phoneTF;
 
     @FXML
     private ScrollPane scrollPane;
-
     @FXML
     private VBox listVBox;
+    @FXML
+    private BorderPane deleteBorderPane;
 
     @FXML
     private Button createProjectButton;
@@ -72,6 +67,8 @@ public class MainPageController extends SceneController {
         if(MainApp.getLoggedIn() instanceof TeamMember){
             createProjectButton.setManaged(false);
             createProjectButton.setVisible(false);
+            deleteBorderPane.setManaged(false);
+            deleteBorderPane.setVisible(false);
         }
 
         createProjectButton.setOnAction(e -> {
