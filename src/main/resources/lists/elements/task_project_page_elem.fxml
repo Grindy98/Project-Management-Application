@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+
+<AnchorPane prefHeight="59.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lists.elements.TaskProjectPageElem">
+   <children>
+      <HBox prefHeight="66.0" prefWidth="600.0">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="descriptionLabel" layoutX="9.0" layoutY="14.0" prefHeight="30.0" prefWidth="217.0" text="Label" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="24.0" text="Deadline:" />
+                  <Label fx:id="deadlineLabel" layoutX="78.0" layoutY="24.0" text="Label" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <CheckBox fx:id="completedCheckBox" layoutY="24.0" mnemonicParsing="false" text="Completed" />
+                  <Button fx:id="manageMembersButton" layoutX="90.0" layoutY="7.0" mnemonicParsing="false" text="Manage Members" />
+                  <Button fx:id="addReviewButton" layoutX="108.0" layoutY="33.0" mnemonicParsing="false" text="Add Review" />
+                  <Button fx:id="seeReviewButton" layoutX="109.0" layoutY="20.0" mnemonicParsing="false" text="See Review" />
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
