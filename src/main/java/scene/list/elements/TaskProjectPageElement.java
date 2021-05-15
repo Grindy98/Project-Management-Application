@@ -31,6 +31,6 @@ public class TaskProjectPageElement extends FXMLListElement {
         else{
             seeReviewButton.setVisible(false);
         }
-        
+
     }
 }

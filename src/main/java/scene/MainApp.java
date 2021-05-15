@@ -33,12 +33,11 @@ public class MainApp extends Application{
         load();
         loggedIn = null;
 
-        List<String> ulist = new ArrayList<String>();
         Task.SimpleDate date = new Task.SimpleDate(15, 4, 2021);
         System.out.println(date);
         String desc = "ajdskalda";
-        ulist.add("user1");
-        Task test = new Task(ulist, date, desc);
+
+        Task test = new Task("abcd", date, desc);
         ObservableList<Task> ls = Task.getTasks();
         ls.add(test);
 

@@ -26,13 +26,13 @@ public class Task {
         tasks = FXCollections.observableArrayList();
     }
 
-    private List<String> memberUsernameList;
+    private String assigneeUsername;
     private SimpleDate deadline;
     private String review;
     private String description;
 
-    public Task(List<String> memberUsernameList, SimpleDate deadline, String description){
-        this.memberUsernameList = memberUsernameList;
+    public Task(String assigneeUsername, SimpleDate deadline, String description){
+        this.assigneeUsername = assigneeUsername;
         this.deadline = deadline;
         this.description = description;
 
@@ -66,7 +66,7 @@ public class Task {
     @Override
     public String toString() {
         return "Project{" +
-                "memberUsernameList=" + memberUsernameList +
+                "assigneeUsername=" + assigneeUsername +
                 ", deadline='" + deadline + '\'' +
                 ", review='" + review + '\'' +
                 ", description='" + description + '\'' +
@@ -79,8 +79,8 @@ public class Task {
         return description;
     }
 
-    public List<String> getMemberUsernameList() {
-        return memberUsernameList;
+    public String getAssigneeUsername() {
+        return assigneeUsername;
     }
 
     public SimpleDate getDeadline() {

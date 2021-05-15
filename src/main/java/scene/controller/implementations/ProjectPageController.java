@@ -11,6 +11,7 @@ import scene.MainApp;
 import scene.SceneType;
 import scene.controller.SceneController;
 import scene.controller.implementations.popups.ManageTeamPopup;
+import scene.controller.implementations.popups.TaskCreatePopup;
 
 public class ProjectPageController extends SceneController {
 
@@ -47,10 +48,7 @@ public class ProjectPageController extends SceneController {
     }
 
     private void createTaskButtonPressed(){
-        if(MainApp.getLoggedIn() instanceof TeamMember)
-            System.out.println("TeamMember pressed");
-        else
-            System.out.println("Manaager pressed");
+      new TaskCreatePopup();
     }
 
     private void manageTeamButtonPressed(){
