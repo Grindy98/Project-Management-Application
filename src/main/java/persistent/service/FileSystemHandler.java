@@ -14,15 +14,24 @@ public class FileSystemHandler {
 
     public enum FileType{
         PROJECT("/save_models/empty_save.json",
-            "project"),
+            "project.json"),
         USER("/save_models/empty_save.json",
-            "users"),
+            "users.json"),
         ;
 
-        private final Path savePath;
+        private Path savePath;
+        private static String folderName = "config";
+
+        private final String emptyLocation;
+        private final String saveFileName;
 
         FileType(String emptyLocation, String saveFileName){
-            savePath = FileSystemHandler.getPathToFile("config", saveFileName);
+            this.emptyLocation = emptyLocation;
+            this.saveFileName = saveFileName;
+        }
+
+        public Path getSavePath(){
+            Path savePath = FileSystemHandler.getPathToFile(folderName, saveFileName);
             if(!Files.exists(savePath)){
                 // Copy file from path
                 try {
@@ -37,9 +46,6 @@ public class FileSystemHandler {
                 }
 
             }
-        }
-
-        public Path getSavePath(){
             return savePath;
         }
     }
@@ -48,6 +54,10 @@ public class FileSystemHandler {
     private static final String USER_FOLDER = System.getProperty("user.home");
 
     public static final Path APP_FULL_PATH = Paths.get(USER_FOLDER, APPLICATION_FOLDER);
+
+    public static void changeFolderName(String newName){
+        FileType.folderName = newName;
+    }
 
     private static Path getPathToFile(String... path) {
         return APP_FULL_PATH.resolve(Paths.get(".", path));

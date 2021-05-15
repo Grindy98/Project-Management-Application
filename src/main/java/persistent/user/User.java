@@ -80,6 +80,7 @@ public abstract class User {
     }
 
     public static void load(){
+        users.clear();
         List<User> list;
         try {
             list =  mapper.readValue(FileSystemHandler.FileType.USER.getSavePath().toFile(),
