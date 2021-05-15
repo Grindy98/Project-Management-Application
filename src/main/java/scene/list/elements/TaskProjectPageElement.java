@@ -34,7 +34,9 @@ public class TaskProjectPageElement extends FXMLListElement {
         if(task.getIsCompleted()){
             completedCheckBox.setSelected(true);
             completedCheckBox.setDisable(true);
-        }else{
+        }
+
+        if(task.getReview() == null){
             seeReviewButton.setVisible(false);
         }
 

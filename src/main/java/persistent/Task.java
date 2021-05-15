@@ -40,7 +40,6 @@ public class Task {
         this.projectName = projectName;
         this.isCompleted = isCompleted;
 
-        review = "No review added.";
     }
 
     private Task(){}
