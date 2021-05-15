@@ -56,6 +56,9 @@ public class ProjectPageController extends SceneController {
         backButton.setOnAction(e -> backButtonPressed());
         createTaskButton.setOnAction(e -> createTaskButtonPressed());
 
+    }
+
+    public void fillList(){
         if(MainApp.getLoggedIn() instanceof TeamMember){
             manageTeamButton.setVisible(false);
             deleteProjectButton.setVisible(false);
@@ -67,9 +70,10 @@ public class ProjectPageController extends SceneController {
         String loggedInUsername = MainApp.getLoggedIn().getUsername();
         if(MainApp.getLoggedIn() instanceof TeamMember){
             // Only see assigned tasks
-            pred = p -> p.getAssigneeUsername().contains(loggedInUsername);
+            pred = p -> (p.getAssigneeUsername().equals(loggedInUsername) && p.getProjectName().equals(projectNameLabel.getText()));
         }else{
             // See project tasks
+            System.out.println("p. is " +  projectNameLabel.getText());
             pred = p -> p.getProjectName().equals(projectNameLabel.getText());
         }
         // Create intermediary filtered list
@@ -81,7 +85,6 @@ public class ProjectPageController extends SceneController {
         list = new FXMLList<>(listVBox);
 
         ListBind.listBind(list, taskFiltered, TaskProjectPageElement::new);
-
     }
 
     private void backButtonPressed(){

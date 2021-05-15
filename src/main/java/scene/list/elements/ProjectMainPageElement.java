@@ -31,6 +31,7 @@ public class ProjectMainPageElement extends FXMLListElement {
         selectButton.setOnAction(e -> {
             ProjectPageController controller = (ProjectPageController) MainApp.changeToScene(SceneType.PROJECT_PAGE);
             controller.setProject(project);
+            controller.fillList();
         });
 
         deleteButton.setOnAction(e -> {
