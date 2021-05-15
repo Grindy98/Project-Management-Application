@@ -13,6 +13,8 @@ import scene.controller.implementations.popups.ManageTeamPopup;
 
 public class ProjectPageController extends SceneController {
 
+    private static Project currentProject = null;
+
     @FXML
     private Button backButton;
     @FXML
@@ -28,7 +30,7 @@ public class ProjectPageController extends SceneController {
 
     public ProjectPageController(){
         super("/pages/project_page.fxml", 600, 400);
-
+        currentProject = null;
         manageTeamButton.setOnAction(e -> manageTeamButtonPressed());
         backButton.setOnAction(e -> backButtonPressed());
         createTaskButton.setOnAction(e -> createTaskButtonPressed());
@@ -48,9 +50,17 @@ public class ProjectPageController extends SceneController {
     }
 
     public void setProject(Project project){
+        currentProject = project;
         projectNameLabel.setText(project.getName());
         descriptionArea.setText(project.getDescription());
 
+    }
+
+    public static Project getCurrentProject(){
+        if (currentProject == null){
+            throw new NullPointerException("Current project not set");
+        }
+        return currentProject;
     }
 
 }
