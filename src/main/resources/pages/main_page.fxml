@@ -2,25 +2,131 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox layoutX="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="300.0" HBox.hgrow="ALWAYS" />
-            <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="300.0" HBox.hgrow="ALWAYS">
+            <BorderPane prefWidth="400.0" HBox.hgrow="ALWAYS">
+               <bottom>
+                  <Button fx:id="logOutButton" mnemonicParsing="false" text="Log Out" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </BorderPane.margin>
+                  </Button>
+               </bottom>
+               <center>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </BorderPane.margin>
+                     <children>
+                        <Region minHeight="-Infinity" prefHeight="40.0" VBox.vgrow="NEVER" />
+                        <HBox>
+                           <children>
+                              <Region layoutX="146.0" layoutY="10.0" prefWidth="60.0" HBox.hgrow="ALWAYS" />
+                              <AnchorPane minWidth="-Infinity" HBox.hgrow="NEVER">
+                                 <children>
+                                    <Label alignment="CENTER" layoutX="40.0" layoutY="16.0" text="Logged in as: " AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <Region prefWidth="10.0" HBox.hgrow="NEVER" />
+                              <AnchorPane layoutX="10.0" layoutY="10.0" minWidth="-Infinity" HBox.hgrow="NEVER">
+                                 <children>
+                                    <Label fx:id="usernameLabel" alignment="CENTER" layoutX="40.0" layoutY="16.0" text="usernameusername" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <Region layoutX="84.0" layoutY="10.0" prefWidth="60.0" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                        <Region prefHeight="100.0" VBox.vgrow="ALWAYS" />
+                        <GridPane hgap="5.0" vgap="10.0" VBox.vgrow="NEVER">
+                          <columnConstraints>
+                            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                          </rowConstraints>
+                           <children>
+                              <PasswordField fx:id="oldPasswordPF" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
+                              <Label alignment="CENTER_RIGHT" minWidth="-Infinity" text="Old Password:" textAlignment="CENTER" GridPane.rowIndex="1" />
+                              <PasswordField fx:id="newPasswordPF" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" />
+                              <Label alignment="CENTER_RIGHT" minWidth="-Infinity" text="New Password:" textAlignment="CENTER" GridPane.rowIndex="2" />
+                              <Button fx:id="passwordButton" minWidth="-Infinity" mnemonicParsing="false" prefWidth="60.0" text="Update" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <Label text="Address:" GridPane.rowIndex="4" />
+                              <Button fx:id="addressButton" layoutX="266.0" layoutY="72.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="60.0" text="Update" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                              <Label layoutX="88.0" layoutY="135.0" text="Phone Number:" GridPane.rowIndex="6" />
+                              <Button fx:id="phoneButton" layoutX="266.0" layoutY="131.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="60.0" text="Update" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                              <TextField fx:id="addressTF" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" />
+                              <TextField fx:id="phoneTF" layoutX="138.0" layoutY="131.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                           </children>
+                        </GridPane>
+                        <VBox spacing="10.0">
+                           <children>
+                              <HBox>
+                                 <children>
+                                    <Region prefWidth="1000.0" HBox.hgrow="ALWAYS" />
+                                    <AnchorPane minWidth="-Infinity" HBox.hgrow="NEVER" />
+                                    <Region minWidth="20.0" />
+                                    <AnchorPane minWidth="-Infinity" HBox.hgrow="NEVER" />
+                                    <Region minWidth="10.0" HBox.hgrow="NEVER" />
+                                    <Region prefWidth="1000.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="10.0">
+                                 <children>
+                                    <Region prefWidth="1000.0" HBox.hgrow="ALWAYS" />
+                                    <AnchorPane minWidth="-Infinity" HBox.hgrow="NEVER" />
+                                    <Region minWidth="20.0" />
+                                    <AnchorPane minWidth="-Infinity" HBox.hgrow="NEVER" />
+                                    <Region minWidth="10.0" HBox.hgrow="NEVER" />
+                                    <Region prefWidth="1000.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <Region layoutX="10.0" layoutY="72.0" prefHeight="100.0" />
+                     </children>
+                  </VBox>
+               </center>
+            </BorderPane>
+            <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" HBox.hgrow="ALWAYS">
                <center>
                   <ScrollPane fx:id="scrollPane" fitToWidth="true" prefWidth="300.0">
                      <content>
                         <VBox fx:id="listVBox" />
                      </content>
                      <BorderPane.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </BorderPane.margin>
                   </ScrollPane>
                </center>
@@ -28,11 +134,53 @@
                   <Button fx:id="createProjectButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" text="Create Project" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </BorderPane.margin></Button>
+                     </BorderPane.margin>
+                  </Button>
                </bottom>
                <HBox.margin>
                   <Insets />
                </HBox.margin>
+               <top>
+                  <AnchorPane prefHeight="40.0" prefWidth="350.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Region maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="20.0" HBox.hgrow="NEVER" />
+                              <AnchorPane prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label alignment="CENTER" text="Project Name" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefWidth="75.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label alignment="CENTER" text="# Members" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <BorderPane maxHeight="1.7976931348623157E308" prefWidth="60.0" HBox.hgrow="ALWAYS">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </BorderPane>
+                              <BorderPane fx:id="deleteBorderPane" layoutX="244.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefWidth="60.0" HBox.hgrow="ALWAYS">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </BorderPane>
+                              <Region maxWidth="-Infinity" minWidth="-Infinity" prefWidth="20.0" HBox.hgrow="NEVER" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+               </top>
             </BorderPane>
          </children>
       </HBox>

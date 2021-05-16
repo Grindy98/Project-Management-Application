@@ -1,7 +1,6 @@
 package persistent;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.collections.FXCollections;
@@ -13,6 +12,7 @@ import persistent.service.FileSystemHandler;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Project {
 
@@ -30,8 +30,8 @@ public class Project {
     private String ownerUsername;
     private String name;
     private String description;
-    /*tasks
-    */
+    @JsonIgnore
+    private ObservableList<Task> tasks;
 
     public Project(List<String> memberUsernameList, String ownerUsername, String name, String description)
             throws ProjectValidationFailedException {
@@ -39,11 +39,21 @@ public class Project {
         this.ownerUsername = ownerUsername;
         this.name = name;
         this.description = description;
+        // Empty list at first;
+        this.tasks = FXCollections.observableArrayList();
         validate();
     }
 
-    private Project(){
+    private Project(){}
 
+    @JsonGetter("tasks-list")
+    private List<Task> getTasksSerialize(){
+        return new ArrayList<>(tasks);
+    }
+
+    @JsonSetter("tasks-list")
+    private void setTasksSerialize(List<Task> tasks){
+        this.tasks = FXCollections.observableArrayList(tasks);
     }
 
     public List<String> getMemberUsernameList() {
@@ -67,12 +77,17 @@ public class Project {
         return description;
     }
 
+    public ObservableList<Task> getTasks(){
+        return tasks;
+    }
+
     public void setDescriptionWithVal(String description) throws ProjectValidationFailedException {
         this.description = description;
         validate();
     }
 
     public static void load(){
+        projects.clear();
         try {
             projects.addAll(mapper.readValue(FileSystemHandler.FileType.PROJECT.getSavePath().toFile(),
                     new TypeReference<List<Project>>(){}));

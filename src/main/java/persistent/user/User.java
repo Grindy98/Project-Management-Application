@@ -80,6 +80,7 @@ public abstract class User {
     }
 
     public static void load(){
+        users.clear();
         List<User> list;
         try {
             list =  mapper.readValue(FileSystemHandler.FileType.USER.getSavePath().toFile(),
@@ -121,21 +122,21 @@ public abstract class User {
     }
 
     //returns true if username is not found in json
-    public boolean validateUsername(){
+    public static boolean validateUsername(String username){
         return !users.containsKey(username);
     }
 
-    public boolean validatePassword(String password){
+    public static boolean validatePassword(String password){
         return (password.length() >= 8);
     }
 
-    public boolean validateAddress(){
+    public static boolean validateAddress(String address){
         if(address.matches("[0-9]+") || address.length() > 100)
             return false;
         return true;
     }
 
-    public boolean validatePhone(){
+    public static boolean validatePhone(String phone){
         return phone.matches("[0-9]+");
     }
 
@@ -144,5 +145,17 @@ public abstract class User {
         String encPass = Encryptor.encodePassword(username, password);
 
         return (encPass.equals(passwd));
+    }
+
+    public void passwordSetter(String passwd){
+        this.passwd = Encryptor.encodePassword(username, passwd);
+    }
+
+    public void addressSetter(String address){
+        this.address = address;
+    }
+
+    public void phoneSetter(String phone){
+        this.phone = phone;
     }
 }

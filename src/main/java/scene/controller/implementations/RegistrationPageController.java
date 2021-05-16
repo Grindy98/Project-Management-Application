@@ -90,21 +90,21 @@ public class RegistrationPageController extends SceneController {
             user = new ProjectManager(usernameTF.getText(), passwordTF.getText(), addressTF.getText(), phoneTF.getText());
 
         //password validation
-        if(!user.validatePassword(passwordTF.getText())) {
+        if(!User.validatePassword(passwordTF.getText())) {
             passErrorLabel.setVisible(true);
             proceed = false;
         } else{
             passErrorLabel.setVisible(false);
         }
         //address validation
-        if(!user.validateAddress()) {
+        if(!User.validateAddress(user.getAddress())) {
             addressErrorLabel.setVisible(true);
             proceed = false;
         } else{
             addressErrorLabel.setVisible(false);
         }
         //phone validation
-        if(!user.validatePhone()) {
+        if(!User.validatePhone(user.getPhone())) {
             phoneErrorLabel.setVisible(true);
             proceed = false;
         } else{
@@ -117,7 +117,7 @@ public class RegistrationPageController extends SceneController {
             return;
 
         //username validation
-        if(!user.validateUsername()){
+        if(!User.validateUsername(user.getUsername())){
             userErrorLabel.setVisible(true);
         }else{
             User.getUsers().put(user.getUsername(), user);

@@ -47,7 +47,8 @@ public class StartPageController extends SceneController {
     private void onLogin(){
 
         ObservableMap<String, User> tempUsers = User.getUsers();
-
+        userErrorText.setVisible(false);
+        passwordErrorText.setVisible(false);
         //check username
         if(!tempUsers.containsKey(usernameTF.getText())){
             userErrorText.setVisible(true);
@@ -59,7 +60,6 @@ public class StartPageController extends SceneController {
               MainApp.changeToScene(SceneType.MAIN_PAGE);
           }else{
               passwordErrorText.setVisible(true);
-              userErrorText.setVisible(false);
           }
         }
 

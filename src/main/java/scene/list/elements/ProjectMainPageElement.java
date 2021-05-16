@@ -7,6 +7,8 @@ import javafx.scene.layout.BorderPane;
 import persistent.Project;
 import persistent.user.TeamMember;
 import scene.MainApp;
+import scene.SceneType;
+import scene.controller.implementations.ProjectPageController;
 import scene.list.FXMLListElement;
 
 public class ProjectMainPageElement extends FXMLListElement {
@@ -27,7 +29,10 @@ public class ProjectMainPageElement extends FXMLListElement {
         super("/lists/elements/project_main_page_elem.fxml");
 
         selectButton.setOnAction(e -> {
-            System.out.println("Select button pressed -- popup window");
+            MainApp.changeToScene(SceneType.PROJECT_PAGE, (ProjectPageController c) -> {
+                c.setProject(project);
+                c.fillList();
+            });
         });
 
         deleteButton.setOnAction(e -> {
