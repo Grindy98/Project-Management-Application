@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import persistent.Task;
 import persistent.user.TeamMember;
 import scene.MainApp;
+import scene.controller.implementations.ProjectPageController;
 import scene.list.FXMLListElement;
 
 public class TaskProjectPageElement extends FXMLListElement {
@@ -58,13 +59,12 @@ public class TaskProjectPageElement extends FXMLListElement {
     private void completedCheckBoxChecked(){
         completedCheckBox.setDisable(true);
 
-        for(var taskEntry:Task.getTasks()){
+        for(var taskEntry: ProjectPageController.getCurrentProject().getTasks()){
             if(taskEntry.getDescription().equals(descriptionLabel.getText())){
                 taskEntry.setIsCompleted(completedCheckBox.isSelected());
             }
         }
 
-        Task.save();
         seeReviewButton.setVisible(true);
     }
 }

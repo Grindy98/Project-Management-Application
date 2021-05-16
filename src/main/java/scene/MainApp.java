@@ -48,14 +48,12 @@ public class MainApp extends Application{
         // Load from memory
         Project.load();
         User.load();
-        Task.load();
     }
 
     public static void save(){
         // Save to memory
         Project.save();
         User.save();
-        Task.save();
     }
 
     public static User getLoggedIn() {

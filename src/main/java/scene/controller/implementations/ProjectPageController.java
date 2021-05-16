@@ -73,15 +73,15 @@ public class ProjectPageController extends SceneController {
         String loggedInUsername = MainApp.getLoggedIn().getUsername();
         if(MainApp.getLoggedIn() instanceof TeamMember){
             // Only see assigned tasks
-            pred = p -> (p.getAssigneeUsername().equals(loggedInUsername) && p.getProjectName().equals(projectNameLabel.getText()));
+            pred = p -> (p.getAssigneeUsername().equals(loggedInUsername) && p.getProject() == currentProject);
         }else{
             // See project tasks
-            pred = p -> p.getProjectName().equals(projectNameLabel.getText());
+            pred = p -> p.getProject() == currentProject;
         }
         // Create intermediary filtered list
-        FilteredList<Task> taskFiltered = new FilteredList<>(Task.getTasks(), pred);
+        FilteredList<Task> taskFiltered = new FilteredList<>(currentProject.getTasks(), pred);
         // Doesn't work without this
-        Task.getTasks().addListener((ListChangeListener<Task>) change ->{
+        currentProject.getTasks().addListener((ListChangeListener<Task>) change ->{
             taskFiltered.equals("");
         });
         list = new FXMLList<>(listVBox);

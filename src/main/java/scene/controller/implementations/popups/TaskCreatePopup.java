@@ -10,6 +10,7 @@ import persistent.user.TeamMember;
 import persistent.user.User;
 import scene.MainApp;
 import scene.controller.SceneController;
+import scene.controller.implementations.ProjectPageController;
 
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
@@ -55,11 +56,15 @@ public class TaskCreatePopup extends SceneController{
         choiceBox.setValue("Select user here..");
         ObservableMap<String, User> userMap = User.getUsers();
 
-        for(Map.Entry<String, User> entry : userMap.entrySet()){
-            User user = entry.getValue();
-            if(user instanceof TeamMember)
-                choiceBox.getItems().add(entry.getKey());
-        }
+        // Add only team members that are in the project
+        ProjectPageController.getCurrentProject().getMemberUsernameList().forEach(u -> {
+            choiceBox.getItems().add(u);
+        });
+//        for(Map.Entry<String, User> entry : userMap.entrySet()){
+//            User user = entry.getValue();
+//            if(user instanceof TeamMember)
+//                choiceBox.getItems().add(entry.getKey());
+//        }
     }
 
     public void setProjectName(String projectName){
@@ -120,7 +125,7 @@ public class TaskCreatePopup extends SceneController{
         Task.SimpleDate date = new Task.SimpleDate(ddlDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         Task newTask = new Task(choiceBox.getValue(), date, descTextArea.getText(), projectName, false);
 
-        Task.getTasks().add(newTask);
+        ProjectPageController.getCurrentProject().getTasks().add(newTask);
     }
 
 }
