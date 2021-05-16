@@ -2,6 +2,13 @@ package persistent;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+
+import static java.util.concurrent.TimeUnit.DAYS;
+
 public class Task {
 
     private String assigneeUsername;
@@ -95,6 +102,18 @@ public class Task {
             day = Integer.parseInt(dateElements[0]);
             month = Integer.parseInt(dateElements[1]);
             year = Integer.parseInt(dateElements[2]);
+        }
+
+        @JsonIgnore
+        public LocalDate getLocalDate(){
+            return LocalDate.of(year, month, day);
+        }
+
+        @JsonIgnore
+        public long getRemainingDays(){
+            LocalDateTime t = LocalDate.now().atStartOfDay();
+            LocalDateTime t2 = getLocalDate().atStartOfDay();
+            return Duration.between(t, t2).toDays();
         }
 
         private SimpleDate(){}

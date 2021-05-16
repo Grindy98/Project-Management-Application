@@ -8,34 +8,39 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox prefHeight="50.0" prefWidth="570.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox prefHeight="50.0" prefWidth="570.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Region prefWidth="20.0" HBox.hgrow="ALWAYS" />
-            <AnchorPane prefWidth="150.0" HBox.hgrow="NEVER">
+            <VBox fx:id="assigneeVBox" alignment="CENTER" prefWidth="100.0">
                <children>
-                  <Label fx:id="descriptionLabel" alignment="CENTER" text="Label" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Label text="Assignee:" />
+                  <Label fx:id="assigneeLabel" text="Label" />
                </children>
-            </AnchorPane>
-            <HBox alignment="CENTER" prefWidth="150.0" spacing="5.0" HBox.hgrow="NEVER">
+            </VBox>
+            <VBox alignment="CENTER" layoutX="80.0" layoutY="10.0" prefWidth="150.0">
                <children>
-                  <AnchorPane>
-                     <children>
-                        <Label text="Deadline:" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane>
-                     <children>
-                        <Label fx:id="deadlineLabel" text="Label" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
+                  <Label text="Task Description:" />
+                  <Label fx:id="descriptionLabel" text="Label" wrapText="true" />
                </children>
-            </HBox>
+            </VBox>
+            <VBox alignment="CENTER" prefWidth="80.0" HBox.hgrow="NEVER">
+               <children>
+                  <Label text="Deadline:" />
+                  <Label fx:id="deadlineLabel" alignment="CENTER" prefWidth="150.0" text="Label" wrapText="true" />
+               </children>
+            </VBox>
             <HBox alignment="CENTER" minWidth="-Infinity" prefWidth="180.0" HBox.hgrow="NEVER">
                <children>
-                  <CheckBox fx:id="completedCheckBox" mnemonicParsing="false" text="Completed" />
+                  <VBox alignment="CENTER" spacing="5.0">
+                     <children>
+                        <CheckBox fx:id="completedCheckBox" mnemonicParsing="false" text="Completed" />
+                        <Rectangle fx:id="rectNotification" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+                     </children>
+                  </VBox>
                   <AnchorPane minHeight="-Infinity" prefHeight="70.0">
                      <children>
                         <VBox fx:id="teamMemberVBox" alignment="CENTER_RIGHT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

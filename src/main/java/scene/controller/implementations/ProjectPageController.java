@@ -102,6 +102,9 @@ public class ProjectPageController extends SceneController {
         projectNameLabel.setText(project.getName());
         descriptionArea.setText(project.getDescription());
 
+        // Reset list
+        scrollPane.setVvalue(0.0);
+
     }
 
     public static Project getCurrentProject(){
