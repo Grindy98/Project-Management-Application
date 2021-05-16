@@ -1,7 +1,6 @@
 package persistent;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Task {
 

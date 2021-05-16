@@ -52,9 +52,6 @@ public class ProjectPageController extends SceneController {
         super("/pages/project_page.fxml", 600, 400);
         currentProject = null;
 
-        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-
         manageTeamButton.setOnAction(e -> manageTeamButtonPressed());
         backButton.setOnAction(e -> backButtonPressed());
         createTaskButton.setOnAction(e -> createTaskButtonPressed());
