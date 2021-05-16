@@ -13,7 +13,7 @@ public enum SceneType{
     START(StartPageController.class, false),
     REGISTER(RegistrationPageController.class, true),
     MAIN_PAGE(MainPageController.class, true),
-    PROJECT_PAGE(ProjectPageController.class, true)
+    PROJECT_PAGE(ProjectPageController.class, false)
     ;
     private final Constructor<? extends SceneController> sceneConstr;
     private final SceneController controller;

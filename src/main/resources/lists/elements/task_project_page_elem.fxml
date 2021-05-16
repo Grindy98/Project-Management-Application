@@ -19,7 +19,7 @@
                   <Label fx:id="descriptionLabel" alignment="CENTER" text="Label" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
-            <HBox alignment="CENTER" prefWidth="150.0" HBox.hgrow="NEVER">
+            <HBox alignment="CENTER" prefWidth="150.0" spacing="5.0" HBox.hgrow="NEVER">
                <children>
                   <AnchorPane>
                      <children>
@@ -38,15 +38,15 @@
                   <CheckBox fx:id="completedCheckBox" mnemonicParsing="false" text="Completed" />
                   <AnchorPane minHeight="-Infinity" prefHeight="70.0">
                      <children>
-                        <VBox alignment="CENTER_RIGHT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox fx:id="teamMemberVBox" alignment="CENTER_RIGHT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Button fx:id="seeReviewButton" mnemonicParsing="false" text="See Review" />
                            </children>
                         </VBox>
-                        <VBox alignment="CENTER_RIGHT" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox fx:id="projManagerVBox" alignment="CENTER_RIGHT" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Button fx:id="addReviewButton" mnemonicParsing="false" text="Add Review" />
-                              <Button fx:id="editTaskButton" mnemonicParsing="false" text="Edit Task" />
+                              <Button fx:id="deleteTaskButton" mnemonicParsing="false" text="Delete Task" />
                            </children>
                         </VBox>
                      </children>

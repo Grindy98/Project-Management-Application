@@ -33,8 +33,6 @@ public class ProjectPageController extends SceneController {
     @FXML
     private Button manageTeamButton;
     @FXML
-    private Button deleteProjectButton;
-    @FXML
     private Label projectNameLabel;
     @FXML
     private ScrollPane scrollPane;
@@ -61,8 +59,8 @@ public class ProjectPageController extends SceneController {
     public void fillList(){
         if(MainApp.getLoggedIn() instanceof TeamMember){
             manageTeamButton.setVisible(false);
-            deleteProjectButton.setVisible(false);
             createTaskButton.setVisible(false);
+            createTaskButton.setManaged(false);
         }
 
         // Filter tasks based on who is logged in
@@ -70,10 +68,10 @@ public class ProjectPageController extends SceneController {
         String loggedInUsername = MainApp.getLoggedIn().getUsername();
         if(MainApp.getLoggedIn() instanceof TeamMember){
             // Only see assigned tasks
-            pred = p -> (p.getAssigneeUsername().equals(loggedInUsername) && p.getProject() == currentProject);
+            pred = p -> (p.getAssigneeUsername().equals(loggedInUsername));
         }else{
             // See project tasks
-            pred = p -> p.getProject() == currentProject;
+            pred = p -> true;
         }
         // Create intermediary filtered list
         FilteredList<Task> taskFiltered = new FilteredList<>(currentProject.getTasks(), pred);

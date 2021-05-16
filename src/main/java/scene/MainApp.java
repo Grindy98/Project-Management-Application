@@ -17,6 +17,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class MainApp extends Application{
     private static Stage stage;
@@ -86,6 +87,14 @@ public class MainApp extends Application{
 
     public static SceneController changeToScene(SceneType scene){
         SceneController controller = scene.getSceneController();
+        stage.setScene(controller.getScene());
+        return controller;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T extends SceneController>  T changeToScene(SceneType scene, Consumer<T> c){
+        T controller = (T)scene.getSceneController();
+        c.accept(controller);
         stage.setScene(controller.getScene());
         return controller;
     }
