@@ -73,6 +73,7 @@ public class Project {
     }
 
     public static void load(){
+        projects.clear();
         try {
             projects.addAll(mapper.readValue(FileSystemHandler.FileType.PROJECT.getSavePath().toFile(),
                     new TypeReference<List<Project>>(){}));

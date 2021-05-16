@@ -14,10 +14,11 @@ public class FileSystemHandler {
 
     public enum FileType{
         PROJECT("/save_models/empty_save.json",
-            "project"),
+            "project.json"),
         USER("/save_models/empty_save.json",
-            "users"),
-        TASK("/save_models/empty_save.json", "tasks");
+            "users.json"),
+        TASK("/save_models/empty_save.json",
+            "tasks.json");
         ;
 
         private Path savePath;

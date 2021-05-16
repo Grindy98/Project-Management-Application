@@ -31,6 +31,7 @@ import javax.security.auth.callback.Callback;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -146,25 +147,10 @@ public class ProjectCreatePopup extends SceneController {
     }
 
     private void addProject(){
-        ArrayList<String> usernames = new ArrayList<>();
-        data.forEach(userView -> {
-            if(userView.getSelect().isSelected()){
-                usernames.add(userView.getUsername());
-            }
-        });
-        usernames.sort(String::compareTo);
-        // Check if all usernames selected exist and are team members
-        usernames.forEach(u -> {
-            User user = User.getUsers().get(u);
-            if(user == null){
-                throw new RuntimeException("Tried to add user that doesn't exist");
-            }
-            if(user instanceof ProjectManager){
-                throw new RuntimeException("Tried to add project manager");
-            }
-        });
 
+        List<String> usernames = getSelectedFromUserView(data);
         Project newProj = null;
+
         try {
             newProj = new Project(usernames, MainApp.getLoggedIn().getUsername(),
                     nameTextField.getText(), descTextArea.getText());
@@ -189,6 +175,27 @@ public class ProjectCreatePopup extends SceneController {
             popup.close();
         }
 
+    }
+
+    public static List<String> getSelectedFromUserView(List<UserView> list){
+        ArrayList<String> usernames = new ArrayList<>();
+        list.forEach(userView -> {
+            if(userView.getSelect().isSelected()){
+                usernames.add(userView.getUsername());
+            }
+        });
+        usernames.sort(String::compareTo);
+        // Check if all usernames selected exist and are team members
+        usernames.forEach(u -> {
+            User user = User.getUsers().get(u);
+            if(user == null){
+                throw new RuntimeException("Tried to add user that doesn't exist");
+            }
+            if(user instanceof ProjectManager){
+                throw new RuntimeException("Tried to add project manager");
+            }
+        });
+        return usernames;
     }
 
     private void reload(){
