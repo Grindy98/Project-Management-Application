@@ -35,6 +35,8 @@ public class MainApp extends Application{
         loggedIn = null;
 
         // Initial scene
+        setUserAgentStylesheet(STYLESHEET_MODENA);
+
         changeToScene(SceneType.START);
         stage.show();
     }

@@ -1,0 +1,8 @@
+
+.root{
+    -fx-font-size: 10pt;
+    -fx-font-family: "Roboto Light";
+}
+.ikonli-font-icon{
+    -fx-fill: crimson;
+}
