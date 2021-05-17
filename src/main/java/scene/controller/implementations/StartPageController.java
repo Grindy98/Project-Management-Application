@@ -40,15 +40,13 @@ public class StartPageController extends SceneController {
             MainApp.changeToScene(SceneType.REGISTER);
         });
 
-        userErrorText.setVisible(false);
-        passwordErrorText.setVisible(false);
+        resetError();
     }
 
     private void onLogin(){
 
         ObservableMap<String, User> tempUsers = User.getUsers();
-        userErrorText.setVisible(false);
-        passwordErrorText.setVisible(false);
+        resetError();
         //check username
         if(!tempUsers.containsKey(usernameTF.getText())){
             userErrorText.setVisible(true);
@@ -63,6 +61,11 @@ public class StartPageController extends SceneController {
           }
         }
 
+    }
+
+    public void resetError(){
+        userErrorText.setVisible(false);
+        passwordErrorText.setVisible(false);
     }
 
     @FXML
