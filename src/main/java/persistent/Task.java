@@ -18,12 +18,12 @@ public class Task {
     @JsonIgnore
     private Project owner = null;
 
-    public Task(String assigneeUsername, SimpleDate deadline, String description, Boolean isCompleted)
+    public Task(String assigneeUsername, SimpleDate deadline, String description)
         throws TaskValidationFailedException {
         this.assigneeUsername = assigneeUsername;
         this.deadline = deadline;
         this.description = description;
-        this.isCompleted = isCompleted;
+        this.isCompleted = false;
         review = null;
         validate();
     }
@@ -77,14 +77,25 @@ public class Task {
 
     public Boolean getIsCompleted(){return isCompleted;}
 
-    public void setDescription(String description){this.description = description;}
-
-    public void setDeadline(SimpleDate deadline) {
-        this.deadline = deadline;
+    @JsonIgnore
+    public void setDescription(String description) throws TaskValidationFailedException {
+        this.description = description;
+        validate();
     }
 
-    public void setAssigneeUsername(String assigneeUsername){this.assigneeUsername = assigneeUsername;}
+    @JsonIgnore
+    public void setDeadline(SimpleDate deadline) throws TaskValidationFailedException {
+        this.deadline = deadline;
+        validate();
+    }
 
+    @JsonIgnore
+    public void setAssigneeUsername(String assigneeUsername) throws TaskValidationFailedException {
+        this.assigneeUsername = assigneeUsername;
+        validate();
+    }
+
+    @JsonIgnore
     public void setIsCompleted(Boolean isCompleted){this.isCompleted = isCompleted;}
 
     private void validate() throws TaskValidationFailedException{
@@ -108,7 +119,7 @@ public class Task {
         int month;
         int day;
 
-        private SimpleDate(int day, int month, int year){
+        public SimpleDate(int day, int month, int year){
             this.year = year;
             this.month = month;
             this.day = day;

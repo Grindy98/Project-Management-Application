@@ -95,7 +95,6 @@ public class TaskCreatePopup extends SceneController{
         ddlDatePicker.getEditor().clear();
         descTextArea.setText("");
         comboBox.getSelectionModel().clearSelection();
-
     }
 
     private boolean addTask(){
@@ -105,7 +104,7 @@ public class TaskCreatePopup extends SceneController{
             date = new Task.SimpleDate(ddlDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         }
         try {
-            Task newTask = new Task(comboBox.getValue(), date, descTextArea.getText(), false);
+            Task newTask = new Task(comboBox.getValue(), date, descTextArea.getText());
             ProjectPageController.getCurrentProject().getTasks().add(newTask);
             return true;
         } catch (TaskValidationFailedException e) {
