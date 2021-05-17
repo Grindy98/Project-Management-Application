@@ -1,34 +1,29 @@
 package scene.controller.implementations.popups;
 
-import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import persistent.Task;
-import persistent.user.TeamMember;
+import persistent.exception.TaskValidationFailedException;
 import persistent.user.User;
 import scene.MainApp;
 import scene.controller.SceneController;
 import scene.controller.implementations.ProjectPageController;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Map;
 
 public class TaskCreatePopup extends SceneController{
 
     private Stage popup;
-
-    private String projectName;
 
     @FXML
     private DatePicker ddlDatePicker;
     @FXML
     private TextArea descTextArea;
     @FXML
-    private ChoiceBox<String> choiceBox;
-    @FXML
-    private TextField textField;
+    private ComboBox<String> comboBox;
     @FXML
     private Button finishButton;
     @FXML
@@ -53,22 +48,24 @@ public class TaskCreatePopup extends SceneController{
         });
 
         //initialize ChoiceBox with usernames
-        choiceBox.setValue("Select user here..");
+        comboBox.setPromptText("Select user...");
         ObservableMap<String, User> userMap = User.getUsers();
 
         // Add only team members that are in the project
         ProjectPageController.getCurrentProject().getMemberUsernameList().forEach(u -> {
-            choiceBox.getItems().add(u);
+            comboBox.getItems().add(u);
         });
-//        for(Map.Entry<String, User> entry : userMap.entrySet()){
-//            User user = entry.getValue();
-//            if(user instanceof TeamMember)
-//                choiceBox.getItems().add(entry.getKey());
-//        }
-    }
-
-    public void setProjectName(String projectName){
-        this.projectName = projectName;
+        comboBox.setButtonCell(new ListCell<String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty) ;
+                if (empty || item == null) {
+                    setText(comboBox.getPromptText());
+                } else {
+                    setText(item);
+                }
+            }
+        });
     }
 
     private void cancelButtonPressed(){
@@ -76,56 +73,45 @@ public class TaskCreatePopup extends SceneController{
     }
 
     private void finishButtonPressed(){
-        if(validate()) {
-            addTask();
+        if(addTask()){
             popup.close();
         }
     }
 
-    private boolean validate()
+    private void validate(TaskValidationFailedException e)
     {
-        boolean dateFlag = true, descriptionFlag = true, selectorFlag = true;
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Invalid input alert");
+        alert.setHeaderText("Invalid input!");
 
-        //check date
-        if(ddlDatePicker.getValue() == null)
-            dateFlag = false;
-        //check description
-        if(descTextArea.getLength() == 0 || descTextArea.getLength() > 50)
-            descriptionFlag = false;
-        //check selector
-        if(choiceBox.getValue().equals("Select user here.."))
-            selectorFlag = false;
+        StringBuilder sb = new StringBuilder();
+        e.getErrors().forEach(type -> sb.append(type.getError()).append('\n'));
 
-        if(!dateFlag || !descriptionFlag || !selectorFlag){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Invalid input alert");
-            alert.setHeaderText("Invalid input!");
+        alert.setContentText(sb.toString());
 
-            String errors = "";
+        alert.showAndWait();
 
-            if(!dateFlag)
-                errors = errors + "Invalid date!\n";
+        //Clear fields
+        ddlDatePicker.getEditor().clear();
+        descTextArea.setText("");
+        comboBox.getSelectionModel().clearSelection();
 
-            if(!descriptionFlag)
-                errors = errors + "Description should be between 1 and 50 characters!\n";
-
-            if(!selectorFlag)
-                errors = errors + "No assignee choosen!\n";
-
-            alert.setContentText(errors);
-
-            alert.showAndWait();
-
-            return false;
-        }
-        return true;
     }
 
-    private void addTask(){
-        Task.SimpleDate date = new Task.SimpleDate(ddlDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        Task newTask = new Task(choiceBox.getValue(), date, descTextArea.getText(), projectName, false);
-
-        ProjectPageController.getCurrentProject().getTasks().add(newTask);
+    private boolean addTask(){
+        Task.SimpleDate date = null;
+        LocalDate toValidate = ddlDatePicker.getValue();
+        if(toValidate != null){
+            date = new Task.SimpleDate(ddlDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        }
+        try {
+            Task newTask = new Task(comboBox.getValue(), date, descTextArea.getText(), false);
+            ProjectPageController.getCurrentProject().getTasks().add(newTask);
+            return true;
+        } catch (TaskValidationFailedException e) {
+            validate(e);
+        }
+        return false;
     }
 
 }
