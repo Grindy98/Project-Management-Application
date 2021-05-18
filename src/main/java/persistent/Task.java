@@ -4,9 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import persistent.exception.TaskValidationFailedException;
 
 import java.time.*;
-import java.time.temporal.ChronoUnit;
-
-import static java.util.concurrent.TimeUnit.DAYS;
 
 public class Task {
 

@@ -1,6 +1,5 @@
 package scene.controller.implementations;
 
-import javafx.beans.InvalidationListener;
 import javafx.collections.ListChangeListener;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
@@ -8,11 +7,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import persistent.Project;
-import persistent.exception.ProjectValidationFailedException;
-import persistent.user.ProjectManager;
 import persistent.user.TeamMember;
 import persistent.user.User;
-import persistent.user.utils.Encryptor;
 import scene.SceneType;
 import scene.list.utils.ListBind;
 import scene.MainApp;

@@ -47,13 +47,22 @@
                      <children>
                         <VBox fx:id="teamMemberVBox" alignment="CENTER_RIGHT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Button fx:id="seeReviewButton" mnemonicParsing="false" text="See Review" />
+                              <Button fx:id="seeReviewButton" mnemonicParsing="false">
+                                 <graphic>
+                                    <FontIcon iconLiteral="fas-envelope-open" iconSize="24" />
+                                 </graphic></Button>
                            </children>
                         </VBox>
-                        <VBox fx:id="projManagerVBox" alignment="CENTER_RIGHT" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox fx:id="projManagerVBox" alignment="CENTER_RIGHT" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Button fx:id="addReviewButton" mnemonicParsing="false" text="Add Review" />
-                              <Button id="delete-button" fx:id="deleteTaskButton" mnemonicParsing="false" text="Delete Task" />
+                              <Button fx:id="addReviewButton" graphicTextGap="0.0" mnemonicParsing="false" textAlignment="CENTER">
+                                 <graphic>
+                                    <FontIcon iconLiteral="fas-pen-square" iconSize="24" />
+                                 </graphic></Button>
+                              <Button id="delete-button" fx:id="deleteTaskButton" mnemonicParsing="false">
+                                 <graphic>
+                                    <FontIcon iconLiteral="fas-trash-alt" iconSize="24" />
+                                 </graphic></Button>
                            </children>
                         </VBox>
                      </children>

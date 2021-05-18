@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <AnchorPane id="main-project-elem-anchor" prefHeight="55.0" prefWidth="394.0" stylesheets="@../../css/default.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -36,7 +37,10 @@
             </AnchorPane>
             <BorderPane maxHeight="1.7976931348623157E308" prefHeight="43.0" prefWidth="74.0" HBox.hgrow="ALWAYS">
                <center>
-                  <Button fx:id="selectButton" alignment="CENTER" mnemonicParsing="false" text="Select" />
+                  <Button fx:id="selectButton" alignment="CENTER" mnemonicParsing="false">
+                     <graphic>
+                        <FontIcon iconLiteral="fas-external-link-square-alt" iconSize="24" />
+                     </graphic></Button>
                </center>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -44,7 +48,10 @@
             </BorderPane>
             <BorderPane fx:id="deleteBorderPane" layoutX="244.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="43.0" prefWidth="81.0" HBox.hgrow="ALWAYS">
                <center>
-                  <Button id="delete-button" fx:id="deleteButton" alignment="CENTER" mnemonicParsing="false" text="Delete" />
+                  <Button id="delete-button" fx:id="deleteButton" alignment="CENTER" mnemonicParsing="false">
+                     <graphic>
+                        <FontIcon iconLiteral="fas-trash-alt" iconSize="24" />
+                     </graphic></Button>
                </center>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

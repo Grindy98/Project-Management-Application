@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <AnchorPane id="anchor" prefHeight="400.0" prefWidth="400.0" stylesheets="@../../css/default.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -19,8 +20,14 @@
       <Pane layoutX="100.0" prefHeight="5.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0" />
       <HBox alignment="CENTER" layoutX="100.0" layoutY="323.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Button fx:id="closeButton" mnemonicParsing="false" prefWidth="111.0" text="Close" />
-            <Button fx:id="reviewButton" mnemonicParsing="false" prefHeight="33.0" prefWidth="111.0" text="Review Task" />
+            <Button fx:id="closeButton" mnemonicParsing="false" prefWidth="111.0" text="Close">
+               <graphic>
+                  <FontIcon iconLiteral="fas-window-close" iconSize="24" />
+               </graphic></Button>
+            <Button fx:id="reviewButton" mnemonicParsing="false" prefWidth="111.0" text="Review">
+               <graphic>
+                  <FontIcon iconLiteral="far-check-square" iconSize="24" />
+               </graphic></Button>
          </children>
       </HBox>
    </children>

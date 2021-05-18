@@ -119,7 +119,7 @@ public class TaskProjectPageElement extends FXMLListElement {
         completedCheckBox.setDisable(true);
         // If completed make the notifier gray
         //iconNotification.setStyle("-fx-fill: #999999");
-        iconNotification.setIconColor(Color.RED);
+        iconNotification.setIconColor(Color.valueOf("#999999"));
     }
 
     private void setNotifications(long remaining){

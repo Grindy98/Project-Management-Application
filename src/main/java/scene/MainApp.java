@@ -37,6 +37,7 @@ public class MainApp extends Application{
 
         // Initial scene
         setUserAgentStylesheet(STYLESHEET_MODENA);
+        stage.setTitle("Project Management Application");
 
         changeToScene(SceneType.START);
         stage.show();

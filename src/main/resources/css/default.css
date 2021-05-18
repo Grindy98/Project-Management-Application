@@ -98,7 +98,7 @@ Color palette:
 #header-label{
     -fx-font-family: "Tahoma";
     -fx-font-size: 20pt;
-    -fx-text-fill: linear-gradient(from 10% 10% to 100% 100%, black, red);
+    -fx-text-fill: linear-gradient(to left, black, #862337);
 }
 
 .label{
@@ -259,6 +259,7 @@ Color palette:
 
 #error-label{
     -fx-text-fill: red;
+    -fx-font-weight: normal;
 }
 
 .check-box{

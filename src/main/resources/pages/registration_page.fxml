@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <AnchorPane id="anchor" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/default.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
@@ -20,13 +21,13 @@
                         <Region prefWidth="1000.0" HBox.hgrow="ALWAYS" />
                         <AnchorPane minWidth="-Infinity" HBox.hgrow="NEVER">
                             <children>
-                        <Label id="header-label" text="Registration" />
+                        <Label id="header-label" text="Registration" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
                             </children>
                         </AnchorPane>
                         <Region prefWidth="1000.0" HBox.hgrow="ALWAYS" />
                     </children>
                 </HBox>
-                <Region layoutX="10.0" layoutY="152.0" minHeight="50.0" />
+                <Region layoutX="10.0" layoutY="152.0" minHeight="40.0" />
                 <HBox layoutX="10.0" layoutY="152.0">
                     <children>
                         <Region prefWidth="1000.0" HBox.hgrow="ALWAYS" />
@@ -96,7 +97,7 @@
                         <Region minWidth="20.0" />
                         <AnchorPane minWidth="140.0" HBox.hgrow="NEVER">
                             <children>
-                                <TextField fx:id="addressTF" />
+                                <TextField fx:id="addressTF" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                             </children>
                         </AnchorPane>
                         <Region minWidth="100.0" HBox.hgrow="NEVER" />
@@ -163,9 +164,15 @@
                 <HBox VBox.vgrow="NEVER">
                     <children>
                         <Region prefWidth="1000.0" HBox.hgrow="ALWAYS" />
-                        <Button fx:id="backButton" minWidth="100.0" mnemonicParsing="false" text="Back" />
+                        <Button fx:id="backButton" minWidth="120.0" mnemonicParsing="false" text="Back">
+                     <graphic>
+                        <FontIcon iconLiteral="fas-arrow-left" iconSize="24" />
+                     </graphic></Button>
                         <Region minWidth="40.0" />
-                        <Button fx:id="registerButton" minWidth="100.0" mnemonicParsing="false" text="Register" />
+                        <Button fx:id="registerButton" minWidth="120.0" mnemonicParsing="false" text="Register">
+                     <graphic>
+                        <FontIcon iconLiteral="fas-user-plus" iconSize="24" />
+                     </graphic></Button>
                         <Region prefWidth="1000.0" HBox.hgrow="ALWAYS" />
                     </children>
                 </HBox>
