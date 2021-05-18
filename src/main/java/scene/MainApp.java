@@ -28,6 +28,7 @@ public class MainApp extends Application{
     public void start(Stage stage) throws IOException {
         MainApp.stage = stage;
 
+
         loggedIn = null;
 
         // Initialize parameters
@@ -58,6 +59,8 @@ public class MainApp extends Application{
         Project.save();
         User.save();
     }
+
+    public static boolean isMaximized(){return stage.isMaximized();}
 
     public static User getLoggedIn() {
         return loggedIn;

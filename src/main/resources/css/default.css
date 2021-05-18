@@ -1,8 +1,93 @@
+/*
+Color palette:
+#EBD827 - dark blue
+#2652EB - light blue
+#FAC26A - yellow
+#6E0B9E - dark purple
+#AC2AEB - light purple
+*/
 
 .root{
-    -fx-font-size: 10pt;
+    -fx-font-size: 11pt;
     -fx-font-family: "Roboto Light";
 }
+
+.button{
+    -fx-background-color: #49caf8;
+    -fx-border-width: 0.5px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-border-color: black;
+    -fx-font-weight: bold;
+}
+
+.button:hover{
+    -fx-background-color: #1eb5e5;
+    -fx-scale-x: 1.1;
+    -fx-border-color: black;
+    -fx-border-width: 0.5px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+.button:pressed{
+    -fx-background-color: #0583ae;
+    -fx-scale-x: 1.0;
+    -fx-border-color: black;
+    -fx-border-width: 0.5px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+#delete-button{
+    -fx-background-color: #A32E08;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+
+}
+
+#delete-button:hover{
+    -fx-background-color: #cf5a00;
+}
+
+#delete-button:pressed{
+    -fx-background-color: #8d3700;
+}
+
+#anchor{
+    -fx-background-color: #FAC26A;
+}
+
+.scroll-pane > .viewport{
+    -fx-background-color: #F29D27;
+}
+
+#hbox{
+    -fx-background-color: #FAC26A;
+    -fx-border-color: black;
+    -fx-border-width: 0.5px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+#list-elem-pane{
+    -fx-border-width: 0.5px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-background-color: #A32E08;
+}
+
+#header-label{
+    -fx-font-family: "Tahoma";
+    -fx-font-size: 20pt;
+    -fx-text-fill: linear-gradient(from 10% 10% to 100% 100%, black, red);
+}
+
+.label{
+    -fx-text-fill: #8D0D00;
+    -fx-font-weight: bold;
+}
+
 .ikonli-font-icon{
-    -fx-fill: crimson;
+    -fx-fill: red;
 }

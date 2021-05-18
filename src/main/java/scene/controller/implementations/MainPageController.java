@@ -58,7 +58,7 @@ public class MainPageController extends SceneController {
     FXMLList<ProjectMainPageElement> list;
 
     public MainPageController() {
-        super("/pages/main_page.fxml", 800, 400);
+        super("/pages/main_page.fxml", 870, 400);
 
 
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
