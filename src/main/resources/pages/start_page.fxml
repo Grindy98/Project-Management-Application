@@ -9,10 +9,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <AnchorPane id="anchor" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/default.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
@@ -25,21 +21,7 @@
                   <Region prefWidth="1000.0" HBox.hgrow="ALWAYS" />
                   <AnchorPane minWidth="-Infinity" HBox.hgrow="NEVER">
                      <children>
-                        <Text stroke="#160202" strokeType="OUTSIDE" text="Project Management Application" textAlignment="CENTER" wrappingWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
-                           <font>
-                              <Font name="Calibri Bold" size="36.0" />
-                           </font>
-                           <fill>
-                              <LinearGradient endX="1.0" startY="1.0">
-                                 <stops>
-                                    <Stop color="BLACK" />
-                                    <Stop color="BLACK" offset="0.1984732824427481" />
-                                    <Stop color="#a500ff" offset="0.5959060964132593" />
-                                    <Stop color="RED" offset="1.0" />
-                                 </stops>
-                              </LinearGradient>
-                           </fill>
-                        </Text>
+                        <Label id="header-label" text="Project Management Application" />
                      </children>
                   </AnchorPane>
                   <Region prefWidth="1000.0" HBox.hgrow="ALWAYS" />
