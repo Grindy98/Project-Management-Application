@@ -15,17 +15,21 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="anchor" prefHeight="400.0" prefWidth="800.0" stylesheets="@../css/default.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox layoutX="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <BorderPane prefWidth="400.0" HBox.hgrow="ALWAYS">
                <bottom>
-                  <Button fx:id="logOutButton" mnemonicParsing="false" text="Log Out" BorderPane.alignment="CENTER">
+                  <Button fx:id="logOutButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" graphicTextGap="5.0" mnemonicParsing="false" text="Log Out" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </BorderPane.margin>
+                     <graphic>
+                        <FontIcon iconLiteral="fas-sign-out-alt" iconSize="20" />
+                     </graphic>
                   </Button>
                </bottom>
                <center>
@@ -40,11 +44,7 @@
                               <Region layoutX="146.0" layoutY="10.0" prefWidth="60.0" HBox.hgrow="ALWAYS" />
                               <AnchorPane minWidth="-Infinity" HBox.hgrow="NEVER">
                                  <children>
-                                    <Label alignment="CENTER" layoutX="40.0" layoutY="16.0" text="Logged in as: " AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </Label>
+                                    <FontIcon iconLiteral="fas-user" iconSize="24" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
                               </AnchorPane>
                               <Region prefWidth="10.0" HBox.hgrow="NEVER" />
@@ -61,11 +61,11 @@
                            </children>
                         </HBox>
                         <Region prefHeight="100.0" VBox.vgrow="ALWAYS" />
-                        <GridPane hgap="5.0" vgap="10.0" VBox.vgrow="NEVER">
+                        <GridPane hgap="5.0" vgap="15.0" VBox.vgrow="NEVER">
                           <columnConstraints>
-                            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="121.4" minWidth="10.0" prefWidth="121.4" />
+                            <ColumnConstraints hgrow="NEVER" maxWidth="148.80000915527347" minWidth="10.0" prefWidth="124.60000000000001" />
+                              <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="99.19995117187497" minWidth="10.0" prefWidth="73.59999084472656" />
                           </columnConstraints>
                           <rowConstraints>
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
@@ -81,11 +81,20 @@
                               <Label alignment="CENTER_RIGHT" minWidth="-Infinity" text="Old Password:" textAlignment="CENTER" GridPane.rowIndex="1" />
                               <PasswordField fx:id="newPasswordPF" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" />
                               <Label alignment="CENTER_RIGHT" minWidth="-Infinity" text="New Password:" textAlignment="CENTER" GridPane.rowIndex="2" />
-                              <Button fx:id="passwordButton" minWidth="-Infinity" mnemonicParsing="false" prefWidth="60.0" text="Update" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <Button fx:id="passwordButton" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                 <graphic>
+                                    <FontIcon iconLiteral="fas-edit" iconSize="24" />
+                                 </graphic></Button>
                               <Label text="Address:" GridPane.rowIndex="4" />
-                              <Button fx:id="addressButton" layoutX="266.0" layoutY="72.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="60.0" text="Update" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                              <Button fx:id="addressButton" layoutX="266.0" layoutY="72.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                 <graphic>
+                                    <FontIcon iconLiteral="fas-edit" iconSize="24" />
+                                 </graphic></Button>
                               <Label layoutX="88.0" layoutY="135.0" text="Phone Number:" GridPane.rowIndex="6" />
-                              <Button fx:id="phoneButton" layoutX="266.0" layoutY="131.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="60.0" text="Update" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                              <Button fx:id="phoneButton" graphicTextGap="0.0" layoutX="266.0" layoutY="131.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="40.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                                 <graphic>
+                                    <FontIcon iconLiteral="fas-edit" iconSize="24" />
+                                 </graphic></Button>
                               <TextField fx:id="addressTF" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" />
                               <TextField fx:id="phoneTF" layoutX="138.0" layoutY="131.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                            </children>
@@ -119,11 +128,11 @@
                   </VBox>
                </center>
             </BorderPane>
-            <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" HBox.hgrow="ALWAYS">
+            <BorderPane fx:id="deleteBorderPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="500.0" HBox.hgrow="ALWAYS">
                <center>
-                  <ScrollPane fx:id="scrollPane" fitToWidth="true" prefWidth="300.0">
+                  <ScrollPane id="scrollpane" fx:id="scrollPane" fitToWidth="true" prefWidth="300.0">
                      <content>
-                        <VBox fx:id="listVBox" />
+                        <VBox id="mainpagevbox" fx:id="listVBox" spacing="5.0" />
                      </content>
                      <BorderPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -131,10 +140,13 @@
                   </ScrollPane>
                </center>
                <bottom>
-                  <Button fx:id="createProjectButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" text="Create Project" BorderPane.alignment="CENTER">
+                  <Button fx:id="createProjectButton" contentDisplay="RIGHT" graphicTextGap="5.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="156.0" text="Create Project" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </BorderPane.margin>
+                     <graphic>
+                        <FontIcon iconLiteral="fas-plus" iconSize="20" />
+                     </graphic>
                   </Button>
                </bottom>
                <HBox.margin>
@@ -143,12 +155,12 @@
                <top>
                   <AnchorPane prefHeight="40.0" prefWidth="350.0" BorderPane.alignment="CENTER">
                      <children>
-                        <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <HBox layoutX="10.0" layoutY="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Region maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="20.0" HBox.hgrow="NEVER" />
-                              <AnchorPane prefWidth="100.0" HBox.hgrow="ALWAYS">
+                              <AnchorPane prefHeight="43.0" prefWidth="111.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Label alignment="CENTER" text="Project Name" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <Label fx:id="nameLabel" alignment="CENTER" text="Project Name" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
                                  <HBox.margin>
                                     <Insets />
@@ -157,20 +169,20 @@
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
                               </AnchorPane>
-                              <AnchorPane prefWidth="75.0" HBox.hgrow="ALWAYS">
+                              <AnchorPane prefHeight="43.0" prefWidth="94.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Label alignment="CENTER" text="# Members" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <Label fx:id="noParticipantsLabel" alignment="CENTER" text="# Members" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
                               </AnchorPane>
-                              <BorderPane maxHeight="1.7976931348623157E308" prefWidth="60.0" HBox.hgrow="ALWAYS">
+                              <BorderPane maxHeight="1.7976931348623157E308" prefHeight="43.0" prefWidth="74.0" HBox.hgrow="ALWAYS">
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
                               </BorderPane>
-                              <BorderPane fx:id="deleteBorderPane" layoutX="244.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefWidth="60.0" HBox.hgrow="ALWAYS">
+                              <BorderPane fx:id="deleteBorderPane" layoutX="244.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="43.0" prefWidth="81.0" HBox.hgrow="ALWAYS">
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>

@@ -60,15 +60,7 @@ public class RegistrationPageController extends SceneController {
     }
 
     private void backPressed() {
-        MainApp.changeToScene(SceneType.START);
-        /*
-        scene.getWindow().hide();
-        scene = new StartPageController().getScene();
-        Stage startStage = new Stage();
-        startStage.setScene(scene);
-        startStage.show();
-        System.out.println("back pressed");
-         */
+        MainApp.changeToScene(SceneType.START, StartPageController::resetError);
     }
 
     private void registerPressed() {

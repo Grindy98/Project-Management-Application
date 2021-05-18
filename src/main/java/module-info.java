@@ -5,6 +5,12 @@ open module Project.Management.Application {
     requires com.fasterxml.jackson.annotation;
     requires com.fasterxml.jackson.databind;
 
+    // Icons
+    requires org.kordamp.ikonli.core;
+    requires org.kordamp.ikonli.javafx;
+    // add icon pack modules
+    requires org.kordamp.ikonli.fontawesome5;
+
     exports persistent;
     exports persistent.exception;
     exports scene;
