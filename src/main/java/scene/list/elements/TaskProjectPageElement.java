@@ -8,9 +8,11 @@ import javafx.beans.value.ObservableBooleanValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
+import org.kordamp.ikonli.javafx.FontIcon;
 import persistent.Task;
 import persistent.user.TeamMember;
 import scene.MainApp;
@@ -36,7 +38,7 @@ public class TaskProjectPageElement extends FXMLListElement {
     @FXML
     private CheckBox completedCheckBox;
     @FXML
-    private Rectangle rectNotification;
+    private FontIcon iconNotification;
     @FXML
     private VBox teamMemberVBox;
     @FXML
@@ -116,7 +118,8 @@ public class TaskProjectPageElement extends FXMLListElement {
         completedCheckBox.setSelected(true);
         completedCheckBox.setDisable(true);
         // If completed make the notifier gray
-        rectNotification.setStyle("-fx-fill: #999999");
+        //iconNotification.setStyle("-fx-fill: #999999");
+        iconNotification.setIconColor(Color.RED);
     }
 
     private void setNotifications(long remaining){
@@ -129,22 +132,27 @@ public class TaskProjectPageElement extends FXMLListElement {
                 }else{
                     warning.setText("There is " + remaining + " day left!");
                 }
-                rectNotification.setStyle("-fx-fill: #ffe500");
+                iconNotification.setIconColor(Color.valueOf("#ffe500"));
+                //iconNotification.setStyle("-fx-fill: #ffe500");
             }else if(remaining == 0){
                 // If today is the deadline, change to red warning
                 warning.setText("Today is the last day!");
-                rectNotification.setStyle("-fx-fill: #ff0000");
+                iconNotification.setIconColor(Color.valueOf("#ff0000"));
+                //iconNotification.setStyle("-fx-fill: #ff0000");
             }else{
                 // Task is overdue, change to purple warning
                 warning.setText("Task is overdue by " + -remaining + " day(s)!");
-                rectNotification.setStyle("-fx-fill: #7d40a7");
+                //iconNotification.setStyle("-fx-fill: #7d40a7");
+                //iconNotification.setIconColor(Color.valueOf("#7d40a7"));
+                iconNotification.setIconColor(Color.web("#7d40a7"));
             }
             warning.setShowDelay(Duration.ZERO);
             warning.setFont(Font.font("Roboto"));
-            Tooltip.install(rectNotification, warning);
+            Tooltip.install(iconNotification, warning);
         }else{
             // Default blue
-            rectNotification.setStyle("-fx-fill: #85edff");
+            iconNotification.setIconColor(Color.valueOf("#85edff"));
+            //iconNotification.setStyle("-fx-fill: #85edff");
         }
     }
 }

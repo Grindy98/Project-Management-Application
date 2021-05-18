@@ -47,7 +47,7 @@ public class ProjectPageController extends SceneController {
     FXMLList<TaskProjectPageElement> list;
 
     public ProjectPageController(){
-        super("/pages/project_page.fxml", 600, 400);
+        super("/pages/project_page.fxml", 650, 400);
         currentProject = null;
 
         manageTeamButton.setOnAction(e -> manageTeamButtonPressed());

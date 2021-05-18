@@ -48,11 +48,7 @@
                   <Region prefWidth="1000.0" HBox.hgrow="ALWAYS" />
                   <AnchorPane minWidth="-Infinity" HBox.hgrow="NEVER">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Login" textAlignment="CENTER" wrappingWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </Text>
+                        <Label id="header-label" text="Login" />
                      </children>
                   </AnchorPane>
                   <Region prefWidth="1000.0" HBox.hgrow="ALWAYS" />

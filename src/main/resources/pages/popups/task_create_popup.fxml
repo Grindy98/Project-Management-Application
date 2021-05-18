@@ -14,21 +14,20 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="566.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="540.0" stylesheets="@../../css/default.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox alignment="CENTER" layoutX="37.0" layoutY="-24.0" prefHeight="434.0" prefWidth="500.0" spacing="5.0">
+      <VBox id="ctvbox" alignment="CENTER" layoutX="37.0" layoutY="-24.0" prefHeight="434.0" prefWidth="500.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane prefHeight="34.0" prefWidth="479.0">
                <children>
-                  <Label layoutX="166.0" layoutY="-6.0" text="Create a task">
+                  <Label id="header-label" layoutX="166.0" layoutY="-6.0" text="Create a task">
                      <font>
                         <Font size="26.0" />
                      </font>
                   </Label>
                </children>
             </AnchorPane>
-            <GridPane hgap="10.0" vgap="15.0">
+            <GridPane id="gpane" hgap="10.0" vgap="15.0">
                <columnConstraints>
                   <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="141.59996643066407" minWidth="10.0" prefWidth="141.59996643066407" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="360.8000122070313" minWidth="10.0" prefWidth="327.2000335693359" />
@@ -39,7 +38,7 @@
                </rowConstraints>
                <children>
                   <Label text="Deadline:" />
-                  <Label prefHeight="62.0" prefWidth="134.0" text="What needs to be done?" GridPane.rowIndex="1" />
+                  <Label prefHeight="62.0" prefWidth="134.0" text="What needs to be done?" wrapText="true" GridPane.rowIndex="1" />
                   <TextArea fx:id="descTextArea" prefHeight="120.0" prefWidth="334.0" promptText="Task description.." GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <DatePicker fx:id="ddlDatePicker" prefHeight="26.0" prefWidth="361.0" promptText="Choose deadline.." GridPane.columnIndex="1" />
                </children>

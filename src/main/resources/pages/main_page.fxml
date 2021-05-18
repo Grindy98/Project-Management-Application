@@ -119,7 +119,7 @@
                   </VBox>
                </center>
             </BorderPane>
-            <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="500.0" HBox.hgrow="ALWAYS">
+            <BorderPane fx:id="deleteBorderPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="500.0" HBox.hgrow="ALWAYS">
                <center>
                   <ScrollPane id="scrollpane" fx:id="scrollPane" fitToWidth="true" prefWidth="300.0">
                      <content>
@@ -170,7 +170,7 @@
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
                               </BorderPane>
-                              <BorderPane fx:id="deleteBorderPane1" layoutX="244.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="43.0" prefWidth="81.0" HBox.hgrow="ALWAYS">
+                              <BorderPane fx:id="deleteBorderPane" layoutX="244.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="43.0" prefWidth="81.0" HBox.hgrow="ALWAYS">
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
