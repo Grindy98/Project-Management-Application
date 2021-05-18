@@ -19,8 +19,8 @@
       <Pane layoutX="100.0" prefHeight="5.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0" />
       <HBox alignment="CENTER" layoutX="100.0" layoutY="323.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Button fx:id="closeButton" mnemonicParsing="false" prefWidth="100.0" text="Close" />
-            <Button fx:id="reviewButton" mnemonicParsing="false" prefWidth="100.0" text="Review Task" />
+            <Button fx:id="closeButton" mnemonicParsing="false" prefWidth="111.0" text="Close" />
+            <Button fx:id="reviewButton" mnemonicParsing="false" prefHeight="33.0" prefWidth="111.0" text="Review Task" />
          </children>
       </HBox>
    </children>

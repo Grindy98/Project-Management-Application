@@ -78,7 +78,7 @@
             <Region layoutX="10.0" layoutY="200.0" minHeight="8.0" prefHeight="8.0" prefWidth="600.0" />
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Text fx:id="userErrorText" fill="RED" layoutX="262.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Invalid username!" />
+                  <Label id="error-label" fx:id="userErrorText" layoutX="239.0" text="Invalid username!" />
                </children>
             </AnchorPane>
             <Region minHeight="5.0" prefHeight="5.0" prefWidth="600.0" />
@@ -105,7 +105,7 @@
             <Region minHeight="8.0" prefHeight="8.0" prefWidth="600.0" />
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Text fx:id="passwordErrorText" fill="RED" layoutX="264.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Invalid password!" />
+                  <Label id="error-label" fx:id="passwordErrorText" layoutX="239.0" text="Invalid password!" />
                </children>
             </AnchorPane>
             <Region minHeight="50.0" />

@@ -110,6 +110,49 @@ Color palette:
     -fx-background-color: #fdd290;
 }
 
+.table-view{
+    -fx-background-color: transparent;
+}
+
+.table-view:focused{
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient(#101010 0%, #424141 100%);
+}
+
+.table-view .column-header-background .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-cell{
+    -fx-text-fill: white;
+}
+
+.table-row-cell{
+    -fx-background-color: -fx-table-cell-border-color, #616161;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+
+.table-row-cell:odd{
+    -fx-background-color: -fx-table-cell-border-color, #424242;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #005797;
+    -fx-background-insets: 0;
+    -fx-background-radius: 1;
+}
+
 .table-view.scroll-pane{
     -fx-background-color: transparent;
 }
@@ -157,6 +200,90 @@ Color palette:
     -fx-background-radius: 10px;
 }
 
+.choice-box{
+    -fx-border-width: 0.5px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+.combo-box .list-cell
+{
+    -fx-background: #282828;
+    -fx-background-color: #282828;
+    -fx-text-fill: #ffffff;
+}
+
+
+.combo-box-popup .list-view .list-cell
+{
+    -fx-padding: 4 0 4 5;
+
+    /* No alternate highlighting */
+    -fx-background-color: #454545;
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected, .combo-box-popup .list-view .list-cell:filled:selected:hover
+{
+    -fx-background: -fx-accent;
+    -fx-background-color: #151515;
+}
+
+.combo-box-popup .list-view .list-cell:filled:hover
+{
+    -fx-background-color: #151515;
+}
+
+.combo-box-base
+{
+    -fx-background-color: #343434, #343434, #343434, #343434;
+    -fx-background-radius: 5, 5, 4, 3;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-padding: 0;
+}
+
+.text-area{
+    -fx-border-width: 0.5px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+.date-picker{
+    -fx-background-color: transparent;
+}
+
+.date-picker > .text-field{
+    -fx-border-width: 0.5px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+#error-label{
+    -fx-text-fill: red;
+}
+
+.check-box{
+    -fx-text-fill: #000000;
+    /*-fx-font-size: 20px;*/
+    -fx-opacity: 1;
+}
+
+.check-box .box {
+    -fx-background-color: #282828;
+    -fx-border-color:grey;
+    -fx-border-radius:3px;
+    /*-fx-text-fill: #ffffff;*/
+}
+
+.check-box:selected .mark {
+
+    -fx-background-color: #282828;
+
+}
+
+.check-box:selected .box {
+
+    -fx-background-color: #d8a764;
+}
 
 
 /*

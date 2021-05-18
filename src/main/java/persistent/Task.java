@@ -77,25 +77,21 @@ public class Task {
 
     public Boolean getIsCompleted(){return isCompleted;}
 
-    @JsonIgnore
-    public void setDescription(String description) throws TaskValidationFailedException {
+    public void setDescriptionValidate(String description) throws TaskValidationFailedException {
         this.description = description;
         validate();
     }
 
-    @JsonIgnore
-    public void setDeadline(SimpleDate deadline) throws TaskValidationFailedException {
+    public void setDeadlineValidate(SimpleDate deadline) throws TaskValidationFailedException {
         this.deadline = deadline;
         validate();
     }
 
-    @JsonIgnore
-    public void setAssigneeUsername(String assigneeUsername) throws TaskValidationFailedException {
+    public void setAssigneeUsernameValidate(String assigneeUsername) throws TaskValidationFailedException {
         this.assigneeUsername = assigneeUsername;
         validate();
     }
 
-    @JsonIgnore
     public void setIsCompleted(Boolean isCompleted){this.isCompleted = isCompleted;}
 
     private void validate() throws TaskValidationFailedException{

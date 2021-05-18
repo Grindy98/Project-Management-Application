@@ -26,9 +26,9 @@ public class StartPageController extends SceneController {
     @FXML
     private Button registerButton;
     @FXML
-    private Text userErrorText;
+    private Label userErrorText;
     @FXML
-    private Text passwordErrorText;
+    private Label passwordErrorText;
 
     public StartPageController() {
         super("/pages/start_page.fxml", 600, 400);

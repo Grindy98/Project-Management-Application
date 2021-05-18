@@ -1,13 +1,8 @@
 package persistent;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import persistent.exception.ProjectValidationFailedException;
 import persistent.exception.TaskValidationFailedException;
-
-import java.time.LocalDate;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -55,7 +50,7 @@ class TaskTest {
     @Test
     void setDescription() {
         try {
-            task.setDescription("");
+            task.setDescriptionValidate("");
             fail("Task should throw error");
         } catch (TaskValidationFailedException e) {
             if (!e.getErrors().contains(TaskValidationFailedException.Type.DESCRIPTION_LENGTH)) {
@@ -63,7 +58,7 @@ class TaskTest {
             }
         }
         try {
-            task.setDescription("desc2");
+            task.setDescriptionValidate("desc2");
         } catch (TaskValidationFailedException e) {
             fail("Task should initialize properly");
         }
@@ -72,7 +67,7 @@ class TaskTest {
     @Test
     void setDeadline() {
         try {
-            task.setDeadline(new Task.SimpleDate(0,-1, 0));
+            task.setDeadlineValidate(new Task.SimpleDate(0,-1, 0));
             fail("Task should throw error");
         } catch (TaskValidationFailedException e) {
             if (!e.getErrors().contains(TaskValidationFailedException.Type.DATE)) {
@@ -80,7 +75,7 @@ class TaskTest {
             }
         }
         try {
-            task.setDeadline(new Task.SimpleDate(1,1, 2021));
+            task.setDeadlineValidate(new Task.SimpleDate(1,1, 2021));
         } catch (TaskValidationFailedException e) {
             fail("Task should initialize properly");
         }
@@ -89,7 +84,7 @@ class TaskTest {
     @Test
     void setAssigneeUsername() {
         try {
-            task.setAssigneeUsername(null);
+            task.setAssigneeUsernameValidate(null);
             fail("Task should throw error");
         } catch (TaskValidationFailedException e) {
             if (!e.getErrors().contains(TaskValidationFailedException.Type.SELECTOR_EMPTY)) {
@@ -97,7 +92,7 @@ class TaskTest {
             }
         }
         try {
-            task.setAssigneeUsername("user1");
+            task.setAssigneeUsernameValidate("user1");
         } catch (TaskValidationFailedException e) {
             fail("Task should initialize properly");
         }
