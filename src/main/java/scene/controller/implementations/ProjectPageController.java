@@ -90,7 +90,6 @@ public class ProjectPageController extends SceneController {
 
     private void createTaskButtonPressed(){
       TaskCreatePopup popup = new TaskCreatePopup();
-      popup.setProjectName(projectNameLabel.getText());
     }
 
     private void manageTeamButtonPressed(){
